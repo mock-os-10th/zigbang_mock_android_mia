@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">zigBangProject</string>
+    <string name="noImpl">미구현 상태입니다.</string>
+    <string name="loading">로딩중입니다.</string>
+    <string name="network_error">네트워크 연결이 원활하지 않습니다.</string>
+    <string name="hello_blank_fragment">HI</string>
+</resources>
