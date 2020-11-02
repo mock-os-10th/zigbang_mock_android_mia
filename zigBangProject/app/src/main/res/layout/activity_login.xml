@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    android:orientation="vertical"
-    tools:context=".login.LoginActivity">
+    android:orientation="vertical">
 
     <FrameLayout
         android:id="@+id/login_container"
@@ -91,21 +90,30 @@
                         android:id="@+id/iv_facebook"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:src="@android:drawable/ic_dialog_info" />
+                        android:background="@drawable/input_back"
+                        android:backgroundTint="@color/gray_light"
+                        android:padding="5dp"
+                        android:src="@drawable/facebook" />
 
                     <ImageView
                         android:id="@+id/iv_google"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_marginLeft="15dp"
-                        android:src="@android:drawable/ic_dialog_info" />
+                        android:background="@drawable/input_back"
+                        android:backgroundTint="@color/gray_light"
+                        android:padding="5dp"
+                        android:src="@drawable/google" />
 
                     <ImageView
                         android:id="@+id/iv_general"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_marginLeft="15dp"
-                        android:src="@android:drawable/ic_dialog_info" />
+                        android:background="@drawable/input_back"
+                        android:backgroundTint="@color/gray_light"
+                        android:padding="7dp"
+                        android:src="@drawable/social" />
                 </LinearLayout>
 
             </RelativeLayout>

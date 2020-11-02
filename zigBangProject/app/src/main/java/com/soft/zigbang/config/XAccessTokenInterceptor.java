@@ -8,8 +8,8 @@ import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
 
-import static com.soft.zigbang.ApplicationClass.X_ACCESS_TOKEN;
-import static com.soft.zigbang.ApplicationClass.sSharedPreferences;
+import static com.soft.zigbang.src.ApplicationClass.X_ACCESS_TOKEN;
+import static com.soft.zigbang.src.ApplicationClass.sSharedPreferences;
 
 
 public class XAccessTokenInterceptor implements Interceptor {

@@ -3,9 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/white"
-    tools:context=".login.RegisterFragment">
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,10 +20,10 @@
             android:src="@drawable/back" />
 
         <TextView
-            android:layout_marginTop="50dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:layout_marginTop="50dp"
             android:gravity="center"
             android:text="간편하게 가입하고\n다양한 서비스를 이용하세요"
             android:textColor="@color/black" />
@@ -53,6 +52,7 @@
                 android:layout_height="45dp"
                 android:background="@drawable/input_back"
                 android:hint="영문, 숫자 포함 8자 이상"
+                android:inputType="textPassword"
                 android:paddingHorizontal="15dp"
                 android:paddingVertical="10dp"
                 android:textSize="12sp" />
@@ -81,6 +81,7 @@
                 android:layout_height="45dp"
                 android:background="@drawable/input_back"
                 android:hint="비밀번호 재입력"
+                android:inputType="textPassword"
                 android:paddingHorizontal="15dp"
                 android:paddingVertical="10dp"
                 android:textSize="12sp" />
@@ -104,7 +105,7 @@
         android:layout_alignParentBottom="true"
         android:background="@color/orange"
         android:gravity="center"
-        android:text="다음"
+        android:text="완료"
         android:textColor="@color/white"
         android:textSize="14sp"
         android:textStyle="bold" />

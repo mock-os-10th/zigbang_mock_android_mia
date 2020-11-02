@@ -4,4 +4,10 @@
     <string name="loading">로딩중입니다.</string>
     <string name="network_error">네트워크 연결이 원활하지 않습니다.</string>
     <string name="hello_blank_fragment">HI</string>
+
+    <!-- 회원가입 -->
+    <string name="password_check">비밀번호가 일치하지 않습니다.</string>
+    <string name="password_cnt">비밀번호는 8글자 이상이여야 합니다.</string>
+    <string name="password_format">비밀번호는 영문과 숫자가 포함되어야 합니다.</string>
+
 </resources>
