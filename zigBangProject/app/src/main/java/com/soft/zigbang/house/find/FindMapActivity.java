@@ -1,4 +1,4 @@
-package com.soft.zigbang.house.find;
+package com.soft.zigbang.src.house.find;
 
 import androidx.appcompat.app.AppCompatActivity;
 

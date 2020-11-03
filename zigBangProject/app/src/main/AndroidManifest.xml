@@ -34,7 +34,8 @@
         </activity>
         <activity android:name=".src.house.find.FindMapActivity" />
         <activity android:name=".src.house.oneroom.sell.SellHouseActivity" />
-        <activity android:name=".src.house.HouseActivity" />
+        <activity android:name=".src.house.HouseActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity
             android:name=".src.main.MainActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">

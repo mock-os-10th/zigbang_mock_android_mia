@@ -41,6 +41,8 @@ public class ApplicationClass extends Application {
     // Retrofit 인스턴스
     public static Retrofit retrofit;
 
+    public static int userNo;
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -67,4 +69,6 @@ public class ApplicationClass extends Application {
 
         return retrofit;
     }
+
+
 }

@@ -11,12 +11,12 @@
     <item
         android:id="@+id/item_my_home"
         android:title="우리집"
-        android:icon="@android:drawable/ic_dialog_alert"
+        android:icon="@drawable/home"
         app:showAsAction="always" />
 
     <item
         android:id="@+id/item_concierge"
         android:title="컨시어지"
-        android:icon="@android:drawable/ic_dialog_alert"
+        android:icon="@drawable/concierge"
         app:showAsAction="always" />
 </menu>

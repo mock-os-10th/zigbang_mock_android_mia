@@ -50,6 +50,8 @@ public class LoginResponse {
 
         @SerializedName("jwt")
         private String mJwt;
+        @SerializedName("userno")
+        private int mUserNo;
 
         public String getJwt() {
             return mJwt;
@@ -59,5 +61,12 @@ public class LoginResponse {
             mJwt = jwt;
         }
 
+        public int getUserno() {
+            return mUserNo;
+        }
+
+        public void setUserno(int userno) {
+            mUserNo = userno;
+        }
     }
 }

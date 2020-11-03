@@ -28,7 +28,7 @@ public class GeneralService {
                     mGeneralFragmentView.generalLoginFailure(null);
                     return;
                 }
-                mGeneralFragmentView.generalLoginSuccess(loginResponse.getMessage());
+                mGeneralFragmentView.generalLoginSuccess(loginResponse.getMessage(), loginResponse.getResult().getUserno());
             }
 
             @Override

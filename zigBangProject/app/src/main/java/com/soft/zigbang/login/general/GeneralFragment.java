@@ -17,6 +17,7 @@ import com.soft.zigbang.R;
 import com.soft.zigbang.src.login.LoginActivity;
 import com.soft.zigbang.src.login.general.interfaces.GeneralFragmentView;
 import com.soft.zigbang.src.main.MainActivity;
+import static com.soft.zigbang.src.ApplicationClass.userNo;
 
 public class GeneralFragment extends Fragment implements View.OnClickListener, GeneralFragmentView {
 
@@ -56,10 +57,9 @@ public class GeneralFragment extends Fragment implements View.OnClickListener, G
     }
 
     @Override
-    public void generalLoginSuccess(String text) {
+    public void generalLoginSuccess(String text, int pUserNo) {
         mParentActivity.hideProgressDialog();
-//        mParentActivity.showCustomToast(text);
-
+        userNo = pUserNo;
         Intent intent = new Intent(getActivity(), MainActivity.class);
         mParentActivity.startActivity(intent);
         mParentActivity.finish();

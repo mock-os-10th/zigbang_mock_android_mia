@@ -1,14 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".house.HouseActivity">
+    android:layout_height="match_parent">
 
     <RelativeLayout
+        android:id="@+id/house_search_relative"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/house_iv_back"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentStart="true"
+            android:padding="5dp"
+            android:src="@drawable/back" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginHorizontal="20dp"
+            android:hint="아파트, 지역, 지하철역, 학교 검색"
+            android:textColorHint="@color/black"
+            android:textSize="13sp"
+            android:gravity="center"
+            android:layout_toLeftOf="@id/house_iv_bar"
+            android:layout_toRightOf="@+id/house_iv_back"
+            android:background="@drawable/search_back" />
+
+        <ImageView
+            android:id="@+id/house_iv_bar"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
+            android:padding="5dp"
+            android:src="@drawable/menu_bar" />
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/house_view"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/house_search_relative"
+        android:layout_height="1dp"
+        android:background="#eeeeee" />
+
+    <LinearLayout
+        android:id="@+id/house_linear"
+        android:padding="5dp"
+        android:layout_below="@+id/house_view"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="매매"
+            android:textColor="@color/black"
+            android:background="@drawable/input_back" />
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_weight="4"
+            android:layout_height="match_parent"
+            android:text="검색 조건을 설정해주세요."
+            android:gravity="center"
+            android:textSize="12sp"
+            android:background="@drawable/input_back" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="필터"
+            android:layout_weight="1"
+            android:textColor="@color/black"
+            android:background="@drawable/input_back" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_below="@+id/house_linear"
         android:id="@+id/map_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-</LinearLayout>
+</RelativeLayout>

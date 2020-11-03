@@ -52,9 +52,9 @@
                     android:textSize="12sp" />
 
                 <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:src="@android:drawable/ic_dialog_info"
+                    android:layout_width="70dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/apart"
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentRight="true" />
 
@@ -87,9 +87,9 @@
                     android:textSize="12sp" />
 
                 <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:src="@android:drawable/ic_dialog_info"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/two_room"
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentRight="true" />
             </RelativeLayout>
@@ -126,9 +126,9 @@
                     android:textSize="12sp" />
 
                 <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:src="@android:drawable/ic_dialog_info"
+                    android:layout_width="70dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/one_room"
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentRight="true" />
             </RelativeLayout>
@@ -160,9 +160,9 @@
                     android:textSize="12sp" />
 
                 <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:src="@android:drawable/ic_dialog_info"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:src="@drawable/officetel"
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentRight="true" />
             </RelativeLayout>
