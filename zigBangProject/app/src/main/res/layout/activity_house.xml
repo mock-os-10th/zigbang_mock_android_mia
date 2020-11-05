@@ -1,93 +1,266 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RelativeLayout
-        android:id="@+id/house_search_relative"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="10dp">
-
-        <ImageView
-            android:id="@+id/house_iv_back"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_alignParentStart="true"
-            android:padding="5dp"
-            android:src="@drawable/back" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_centerVertical="true"
-            android:layout_marginHorizontal="20dp"
-            android:hint="아파트, 지역, 지하철역, 학교 검색"
-            android:textColorHint="@color/black"
-            android:textSize="13sp"
-            android:gravity="center"
-            android:layout_toLeftOf="@id/house_iv_bar"
-            android:layout_toRightOf="@+id/house_iv_back"
-            android:background="@drawable/search_back" />
-
-        <ImageView
-            android:id="@+id/house_iv_bar"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_alignParentEnd="true"
-            android:padding="5dp"
-            android:src="@drawable/menu_bar" />
-    </RelativeLayout>
-
-    <View
-        android:id="@+id/house_view"
-        android:layout_width="match_parent"
-        android:layout_below="@+id/house_search_relative"
-        android:layout_height="1dp"
-        android:background="#eeeeee" />
 
     <LinearLayout
-        android:id="@+id/house_linear"
-        android:padding="5dp"
-        android:layout_below="@+id/house_view"
-        android:layout_width="match_parent"
-        android:layout_height="40dp">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:text="매매"
-            android:textColor="@color/black"
-            android:background="@drawable/input_back" />
-
-        <EditText
-            android:layout_width="0dp"
-            android:layout_weight="4"
-            android:layout_height="match_parent"
-            android:text="검색 조건을 설정해주세요."
-            android:gravity="center"
-            android:textSize="12sp"
-            android:background="@drawable/input_back" />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:text="필터"
-            android:layout_weight="1"
-            android:textColor="@color/black"
-            android:background="@drawable/input_back" />
-    </LinearLayout>
-
-    <RelativeLayout
-        android:layout_below="@+id/house_linear"
-        android:id="@+id/map_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:background="#eeeeee"
+        android:orientation="vertical">
 
-</RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:background="@color/zigbang">
+
+            <ImageView
+                android:id="@+id/house_iv_back"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="20dp"
+                android:onClick="houseOnClick"
+                android:padding="5dp"
+                android:src="@drawable/arrow_left" />
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="15dp"
+                android:layout_toRightOf="@+id/house_iv_back"
+                android:src="@drawable/zigbang_noback" />
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="10dp"
+                android:padding="5dp"
+                android:src="@drawable/menu_bar" />
+
+            <TextView
+                android:id="@+id/house_tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/house_tv_desc"
+                android:layout_marginStart="15dp"
+                android:text="아파트"
+                android:textColor="@color/white"
+                android:textSize="37sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/house_tv_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/linear"
+                android:layout_marginStart="15dp"
+                android:layout_marginBottom="20dp"
+                android:text="매매 / 전·월세 /\n신축분양"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+
+            <LinearLayout
+                android:id="@+id/linear"
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginBottom="50dp"
+                android:background="@drawable/round_corner_back_1"
+                android:backgroundTint="#b4b4b4"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:id="@+id/house_rel_first"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@color/white"
+                    android:onClick="houseOnClick"
+                    android:padding="10dp">
+
+                    <ImageView
+                        android:id="@+id/house_iv_first"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:layout_centerHorizontal="true"
+                        android:background="@drawable/round_corner_back_2"
+                        android:backgroundTint="@color/zigbang"
+                        android:padding="10dp"
+                        android:src="@drawable/map" />
+
+                    <TextView
+                        android:id="@+id/house_tv_first"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/house_iv_first"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp"
+                        android:text="매매/전월세"
+                        android:textColor="@color/black"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/house_rel_second"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/white"
+                    android:onClick="houseOnClick"
+                    android:padding="10dp">
+
+                    <ImageView
+                        android:id="@+id/house_iv_second"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:layout_centerHorizontal="true"
+                        android:background="@drawable/round_corner_back_2"
+                        android:backgroundTint="@color/zigbang"
+                        android:padding="7dp"
+                        android:src="@drawable/new_buliding" />
+
+                    <TextView
+                        android:id="@+id/house_tv_second"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/house_iv_second"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp"
+                        android:text="신축분양"
+                        android:textColor="@color/black"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/house_linear_big_data"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="15dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="빅데이터랩™"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/house_tv_big_data_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="으로 "
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/house_tv_big_data_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="인구흐름 "
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/house_tv_big_data_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="보기  >"
+                    android:textColor="@color/black" />
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="2"
+            android:background="@color/white">
+
+            <ImageView
+                android:id="@+id/house_iv_news"
+                android:layout_width="25dp"
+                android:layout_height="15dp"
+                android:layout_margin="15dp"
+                android:src="@drawable/news" />
+
+            <TextView
+                android:id="@+id/house_tv_news"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:layout_toRightOf="@+id/house_iv_news"
+                android:text="최신 뉴스"
+                android:textColor="@color/black"
+                android:textSize="12sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@id/house_tv_news"
+                android:layout_marginTop="10dp"
+                android:background="#eeeeee" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="조회된 뉴스가 없습니다." />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:background="@color/white">
+
+            <ImageView
+                android:id="@+id/house_iv_favorite"
+                android:layout_width="25dp"
+                android:layout_height="20dp"
+                android:layout_margin="15dp"
+                android:src="@drawable/buliding" />
+
+            <TextView
+                android:id="@+id/house_tv_favorite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_toRightOf="@+id/house_iv_favorite"
+                android:text="관심 아파트"
+                android:textColor="@color/black"
+                android:textSize="12sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@id/house_tv_favorite"
+                android:layout_marginTop="10dp"
+                android:background="#eeeeee" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="50dp"
+                android:text="관심 아파트가 없습니다." />
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

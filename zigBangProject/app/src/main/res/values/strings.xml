@@ -10,4 +10,9 @@
     <string name="password_cnt">비밀번호는 8글자 이상이여야 합니다.</string>
     <string name="password_format">비밀번호는 영문과 숫자가 포함되어야 합니다.</string>
 
+    <!-- 원룸 -->
+    <string name="oneRoom_title">원룸</string>
+    <string name="oneRoom_desc">전·월세</string>
+    <string name="oneRoom_first">지도로 방 찾기</string>
+    <string name="oneRoom_second">지하철역으로 찾기</string>
 </resources>

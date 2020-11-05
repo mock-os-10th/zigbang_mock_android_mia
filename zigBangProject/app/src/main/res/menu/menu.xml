@@ -5,7 +5,7 @@
     <item
         android:id="@+id/item_real_estate"
         android:title="부동산"
-        android:icon="@android:drawable/ic_dialog_alert"
+        android:icon="@drawable/realestate"
         app:showAsAction="always" />
 
     <item

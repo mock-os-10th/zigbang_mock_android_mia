@@ -2,7 +2,7 @@
     <item android:drawable="@color/white" />
     <item>
         <bitmap
-            android:src="@drawable/zigbang2"
+            android:src="@drawable/splash_back"
             android:gravity="center"/>
     </item>
 

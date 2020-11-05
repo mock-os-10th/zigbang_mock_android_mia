@@ -50,17 +50,42 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/text" />
 
-            <Button
+<!--            <Button-->
+<!--                android:id="@+id/btn_login_kakao"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginHorizontal="30dp"-->
+<!--                android:layout_marginTop="30dp"-->
+<!--                android:background="@drawable/round_corner_back_2"-->
+<!--                android:text="카카오톡으로 시작"-->
+<!--                android:onClick="LoginOnClick"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/text2" />-->
+
+            <TextView
                 android:id="@+id/btn_login_kakao"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
                 android:layout_marginHorizontal="30dp"
                 android:layout_marginTop="30dp"
                 android:background="@drawable/round_corner_back_2"
                 android:text="카카오톡으로 시작"
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:onClick="LoginOnClick"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/text2" />
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text2"
+                android:layout_marginStart="122dp"
+                android:layout_marginTop="40dp"
+                android:src="@drawable/kakao_logo" />
 
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -90,6 +115,7 @@
                         android:id="@+id/iv_facebook"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
+                        android:onClick="LoginOnClick"
                         android:background="@drawable/input_back"
                         android:backgroundTint="@color/gray_light"
                         android:padding="5dp"
@@ -97,6 +123,7 @@
 
                     <ImageView
                         android:id="@+id/iv_google"
+                        android:onClick="LoginOnClick"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_marginLeft="15dp"
@@ -110,6 +137,7 @@
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_marginLeft="15dp"
+                        android:onClick="LoginOnClick"
                         android:background="@drawable/input_back"
                         android:backgroundTint="@color/gray_light"
                         android:padding="7dp"
