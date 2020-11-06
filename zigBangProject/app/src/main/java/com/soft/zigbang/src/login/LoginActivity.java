@@ -24,16 +24,11 @@ public class LoginActivity extends BaseActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        if(sSharedPreferences != null) {
-            String token = sSharedPreferences.getString("X-ACCESS-TOKEN", "no");
-            token.toString();
-        }
-
     }
 
     public void LoginOnClick(View v) {
         switch (v.getId()) {
-            case R.id.btn_login_kakao:
+            case R.id.rel_kakao_login:
             case R.id.iv_facebook:
             case R.id.iv_google:
                 showCustomToast(getString(R.string.noImpl));

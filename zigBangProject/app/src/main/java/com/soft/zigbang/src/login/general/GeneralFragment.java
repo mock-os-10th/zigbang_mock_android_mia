@@ -5,13 +5,15 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Patterns;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.soft.zigbang.R;
 import com.soft.zigbang.src.login.LoginActivity;
@@ -25,36 +27,41 @@ public class GeneralFragment extends Fragment implements View.OnClickListener, G
     private GeneralService mGeneralService;
     private LoginActivity mParentActivity;
 
-    EditText editId;
-    EditText editPassword;
+    EditText mEditId;
+    EditText mEditPassword;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_general, container, false);
-
-        ImageView ivBack = view.findViewById(R.id.iv_back);
-        editId = view.findViewById(R.id.edit_id);
-        editPassword = view.findViewById(R.id.edit_password);
-
-        TextView tvStart = view.findViewById(R.id.tv_start);
-        TextView tvFindId = view.findViewById(R.id.tv_find_id);
-        TextView tvFindPassword = view.findViewById(R.id.tv_find_password);
-        TextView tvFindRegister = view.findViewById(R.id.tv_register);
-
-        ivBack.setOnClickListener(this);
-        editId.setOnClickListener(this);
-        editPassword.setOnClickListener(this);
-        tvStart.setOnClickListener(this);
-        tvFindId.setOnClickListener(this);
-        tvFindPassword.setOnClickListener(this);
-        tvFindRegister.setOnClickListener(this);
+        settingView(view);
 
         mGeneralService = new GeneralService(this);
         mParentActivity = (LoginActivity) getActivity();
 
+        mEditPassword.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int action, KeyEvent event) {
+                if (action == EditorInfo.IME_ACTION_DONE || action == EditorInfo.IME_FLAG_NO_ENTER_ACTION) {
+                    generalLogin();
+                    return true;
+                }
+                return false;
+            }
+        });
+
         return view;
+    }
+
+    private void generalLogin() {
+        String email = mEditId.getText().toString();
+        String pw = mEditPassword.getText().toString();
+
+        if (!checkValidation(email, pw)) return;
+
+        mParentActivity.showProgressDialog();
+        mGeneralService.postLogin(email, pw);
     }
 
     @Override
@@ -89,14 +96,7 @@ public class GeneralFragment extends Fragment implements View.OnClickListener, G
                 mParentActivity.addFragment(1);
                 break;
             case R.id.tv_start:
-                String email = editId.getText().toString();
-                String pw = editPassword.getText().toString();
-
-                if(!checkValidation(email, pw)) break;
-
-                mParentActivity.showProgressDialog();
-                mGeneralService.postLogin(email, pw);
-//                mGeneralService.postLogin("suy0226@naver.com", "test123");
+                generalLogin();
                 break;
             case R.id.tv_find_id:
             case R.id.tv_find_password:
@@ -106,15 +106,41 @@ public class GeneralFragment extends Fragment implements View.OnClickListener, G
     }
 
     private boolean checkValidation(String email, String pw) {
+
         if (email.length() == 0) {
-            mParentActivity.showCustomToast("이메일을 입력해주세요.");
+            mParentActivity.showCustomToast(getString(R.string.email_input));
+            return false;
+        }
+
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            mParentActivity.showCustomToast(getString(R.string.email_check));
             return false;
         }
 
         if (pw.length() == 0) {
-            mParentActivity.showCustomToast("비밀번호를 입력해주세요.");
+            mParentActivity.showCustomToast(getString(R.string.password_input));
             return false;
         }
+
         return true;
+    }
+
+    private void settingView(View view) {
+        ImageView ivBack = view.findViewById(R.id.iv_back);
+        mEditId = view.findViewById(R.id.edit_id);
+        mEditPassword = view.findViewById(R.id.edit_password);
+
+        TextView tvStart = view.findViewById(R.id.tv_start);
+        TextView tvFindId = view.findViewById(R.id.tv_find_id);
+        TextView tvFindPassword = view.findViewById(R.id.tv_find_password);
+        TextView tvFindRegister = view.findViewById(R.id.tv_register);
+
+        ivBack.setOnClickListener(this);
+        mEditId.setOnClickListener(this);
+        mEditPassword.setOnClickListener(this);
+        tvStart.setOnClickListener(this);
+        tvFindId.setOnClickListener(this);
+        tvFindPassword.setOnClickListener(this);
+        tvFindRegister.setOnClickListener(this);
     }
 }

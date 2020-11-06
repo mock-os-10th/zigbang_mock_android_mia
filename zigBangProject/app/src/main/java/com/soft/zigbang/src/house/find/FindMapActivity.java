@@ -92,11 +92,10 @@ public class FindMapActivity extends BaseActivity implements FindMapActivityView
         marker.setItemName(apart.getName());
         marker.setTag(apart.getApartIndex().intValue());
         marker.setMapPoint(MapPoint.mapPointWithGeoCoord(apart.getLatitude(), apart.getLongitude()));
-//        marker.setMarkerType(MapPOIItem.MarkerType.BluePin);
 //        marker.setSelectedMarkerType(MapPOIItem.MarkerType.RedPin);
         marker.setMarkerType(MapPOIItem.MarkerType.CustomImage);
         marker.setCustomImageResourceId(R.drawable.marker_2);
-        marker.setCustomImageAutoscale(false); // hdpi, xhdpi 등 안드로이드 플랫폼의 스케일을 사용할 경우 지도 라이브러리의 스케일 기능을 꺼줌.
+        marker.setCustomImageAutoscale(false); // 지도 라이브러리의 스케일 기능을 꺼줌.
         mMapView.addPOIItem(marker);
     }
 

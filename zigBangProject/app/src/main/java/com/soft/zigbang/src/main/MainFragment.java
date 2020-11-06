@@ -8,12 +8,12 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.soft.zigbang.R;
-import com.soft.zigbang.src.house.HouseActivity;
+import com.soft.zigbang.src.house.apart.ApartActivity;
+import com.soft.zigbang.src.house.oneroom.OneRoomActivity;
 
 
 public class MainFragment extends Fragment implements View.OnClickListener {
@@ -42,14 +42,14 @@ public class MainFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        Intent intent = new Intent(getActivity(), HouseActivity.class);
+        Intent intent = null;
         switch (v.getId()) {
             case R.id.apart_layout:
-                intent.putExtra("type", "APART");
+                intent = new Intent(getActivity(), ApartActivity.class);
                 getActivity().startActivity(intent);
                 break;
             case R.id.one_room_layout:
-                intent.putExtra("type", "ONE");
+                intent = new Intent(getActivity(), OneRoomActivity.class);
                 getActivity().startActivity(intent);
                 break;
             case R.id.two_room_layout:

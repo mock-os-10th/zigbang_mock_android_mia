@@ -9,10 +9,17 @@ import androidx.annotation.Nullable;
 import com.soft.zigbang.src.BaseActivity;
 import com.soft.zigbang.src.login.LoginActivity;
 
+import static com.soft.zigbang.src.ApplicationClass.sSharedPreferences;
+
 public class SplashActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if(sSharedPreferences != null) {
+            String token = sSharedPreferences.getString("X-ACCESS-TOKEN", "no");
+            token.toString();
+        }
 
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
