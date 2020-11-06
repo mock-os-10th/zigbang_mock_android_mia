@@ -1,6 +1,7 @@
 package com.soft.zigbang.src.house.find;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
@@ -36,7 +37,7 @@ public class FindMapActivity extends BaseActivity implements FindMapActivityView
 
     private MapView mMapView;
     private RelativeLayout mFindRelApart;
-    private TextView mFindTvApartName, mFindTvApartAddress, mFindTvApartDate;
+    private TextView mFindTvApartName, mFindTvApartAddress, mFindTvApartDate, mFindTvType;
 
     private boolean isShowApart;
     private int orgIndex = 0;
@@ -50,12 +51,13 @@ public class FindMapActivity extends BaseActivity implements FindMapActivityView
         setContentView(R.layout.activity_find_map);
 
         settingMapView(37.5642135, 127.0016985, 7);
-
+        mFindMapService = new FindMapService(this);
         mMapView.setPOIItemEventListener(this);
         mFindRelApart = findViewById(R.id.find_rel_apart);
         mFindTvApartName = findViewById(R.id.find_tv_apart_name);
         mFindTvApartAddress = findViewById(R.id.find_tv_apart_address);
         mFindTvApartDate = findViewById(R.id.find_tv_apart_date);
+        mFindTvType = findViewById(R.id.find_tv_type);
 
         isShowApart = false;
     }
@@ -65,10 +67,16 @@ public class FindMapActivity extends BaseActivity implements FindMapActivityView
         super.onStart();
 
         showProgressDialog();
-        // 필터 적용되면 여기서 처리
-        // HashMap 이용
-        mFindMapService.getApartList();
 
+        if (mFilterMap != null) {
+            String sellType = mFilterMap.get("sellType").toString();
+            int acreage = Integer.parseInt(mFilterMap.get("acreage").toString());
+            int enterAt = Integer.parseInt(mFilterMap.get("enterAt").toString());
+            int liveNum = Integer.parseInt(mFilterMap.get("liveNum").toString());
+            mFindMapService.getSearchApartList(sellType, acreage, enterAt, liveNum);
+        } else {
+            mFindMapService.getApartList();
+        }
     }
 
     /**
@@ -79,7 +87,6 @@ public class FindMapActivity extends BaseActivity implements FindMapActivityView
         ViewGroup mapViewContainer = (ViewGroup) findViewById(R.id.map_view);
         mapViewContainer.addView(mMapView);
 
-        mFindMapService = new FindMapService(this);
         mMapView.setMapCenterPoint(MapPoint.mapPointWithGeoCoord(lat, lnt), true);
         mMapView.setZoomLevel(zoom, true);
     }
@@ -98,6 +105,10 @@ public class FindMapActivity extends BaseActivity implements FindMapActivityView
         marker.setCustomImageAutoscale(false); // 지도 라이브러리의 스케일 기능을 꺼줌.
         mMapView.addPOIItem(marker);
     }
+
+    /**
+     * 마커 제거
+     */
 
     /**
      * 아파트 목록 조회 성공
@@ -126,7 +137,7 @@ public class FindMapActivity extends BaseActivity implements FindMapActivityView
         FindResponse.Result result = apartList.get(0);
         Intent intent = new Intent(this, FindDetailActivity.class);
         Bundle bundle = new Bundle();
-        bundle.putSerializable("apart", (Serializable)result);
+        bundle.putSerializable("apart", (Serializable) result);
         intent.putExtras(bundle);
         startActivity(intent);
     }
@@ -137,6 +148,23 @@ public class FindMapActivity extends BaseActivity implements FindMapActivityView
         showCustomToast(message);
     }
 
+    /**
+     * 아파트 검색 조회
+     */
+    @Override
+    public void getSearchApartSuccess(List<FindResponse.Result> apartList) {
+        mMapView.removeAllPOIItems();
+//        mApartList = apartList;
+        for (FindResponse.Result apart : apartList) {
+            createMarker(apart);
+        }
+        hideProgressDialog();
+    }
+
+    @Override
+    public void getSearchApartFailure(String message) {
+
+    }
 
     /**
      * 뷰 클릭
@@ -150,13 +178,16 @@ public class FindMapActivity extends BaseActivity implements FindMapActivityView
                 mFindListFragment = FindListFragment.newInstance(mApartList);
                 fm.beginTransaction().add(R.id.rel_container, mFindListFragment).commit();
                 break;
-            case R.id.find_rel_sell:
-                // 다이얼로그
+            case R.id.find_rel_type:
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setView(R.layout.apart_dialog);
+                AlertDialog dialog = builder.create();
+                dialog.show();
+                dialog.getWindow().setLayout(1180, 925);
                 break;
             case R.id.find_linear_filter:
                 Intent intent = new Intent(this, FilterActivity.class);
                 startActivityForResult(intent, 100);
-                // 필터 액티비티
                 break;
             case R.id.find_rel_apart:
                 showProgressDialog();
@@ -167,6 +198,7 @@ public class FindMapActivity extends BaseActivity implements FindMapActivityView
 
     /**
      * 필터
+     *
      * @param requestCode 필터 요청 코드
      * @param resultCode  RESULT_OK
      * @param data        필터값
@@ -178,8 +210,7 @@ public class FindMapActivity extends BaseActivity implements FindMapActivityView
         // 필터 적용
         if (resultCode == RESULT_OK) {
             Log.d(TAG, "onActivityResult");
-            mFilterMap = new HashMap<>();
-
+            mFilterMap = (HashMap<String, Object>) data.getExtras().getSerializable("filterMap");
         }
     }
 
@@ -193,7 +224,7 @@ public class FindMapActivity extends BaseActivity implements FindMapActivityView
             orgIndex = mapPOIItem.getTag();
         }
 
-        if(orgIndex != mapPOIItem.getTag()) {
+        if (orgIndex != mapPOIItem.getTag()) {
             orgIndex = mapPOIItem.getTag();
             isShowApart = false;
         }

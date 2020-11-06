@@ -20,6 +20,7 @@
             android:layout_width="30dp"
             android:layout_height="20dp"
             android:layout_marginTop="3dp"
+            android:onClick="filterOnClick"
             android:src="@drawable/close" />
 
         <TextView
@@ -90,22 +91,27 @@
                     android:layout_marginTop="15dp">
 
                     <TextView
+                        android:id="@+id/filter_tv_sell"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="10dp"
                         android:layout_weight="1"
                         android:background="@drawable/input_back"
+                        android:backgroundTint="#303030"
                         android:gravity="center"
+                        android:onClick="filterType"
                         android:padding="8dp"
                         android:text="매매"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/white" />
 
                     <TextView
+                        android:id="@+id/filter_tv_month"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@drawable/input_back"
                         android:gravity="center"
+                        android:onClick="filterType"
                         android:padding="8dp"
                         android:text="전월세"
                         android:textColor="@color/black" />
@@ -150,44 +156,52 @@
                         android:orientation="horizontal">
 
                         <TextView
+                            android:id="@+id/filter_tv_area_all"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:background="@color/white"
                             android:gravity="center"
+                            android:onClick="filterArea"
                             android:padding="8dp"
                             android:text="전체"
                             android:textColor="@color/black" />
 
                         <TextView
+                            android:id="@+id/filter_tv_area_low_10"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="1dp"
                             android:layout_weight="1"
                             android:background="@color/white"
                             android:gravity="center"
+                            android:onClick="filterArea"
                             android:padding="8dp"
                             android:text="10평 이하"
                             android:textColor="@color/black" />
 
                         <TextView
+                            android:id="@+id/filter_tv_area_10"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="1dp"
                             android:layout_weight="1"
                             android:background="@color/white"
                             android:gravity="center"
+                            android:onClick="filterArea"
                             android:padding="8dp"
                             android:text="10평대"
                             android:textColor="@color/black" />
 
                         <TextView
+                            android:id="@+id/filter_tv_area_20"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="1dp"
                             android:layout_weight="1"
                             android:background="@color/white"
                             android:gravity="center"
+                            android:onClick="filterArea"
                             android:padding="8dp"
                             android:text="20평대"
                             android:textColor="@color/black" />
@@ -196,50 +210,58 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="1dp"
                         android:layout_marginLeft="1dp"
+                        android:layout_marginRight="1dp"
                         android:layout_marginBottom="1dp"
                         android:orientation="horizontal">
 
                         <TextView
+                            android:id="@+id/filter_tv_area_30"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:background="@color/white"
                             android:gravity="center"
+                            android:onClick="filterArea"
                             android:padding="8dp"
                             android:text="30평대"
                             android:textColor="@color/black" />
 
                         <TextView
+                            android:id="@+id/filter_tv_area_40"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="1dp"
                             android:layout_weight="1"
                             android:background="@color/white"
                             android:gravity="center"
+                            android:onClick="filterArea"
                             android:padding="8dp"
                             android:text="40평대"
                             android:textColor="@color/black" />
 
                         <TextView
+                            android:id="@+id/filter_tv_area_50"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="1dp"
                             android:layout_weight="1"
                             android:background="@color/white"
                             android:gravity="center"
+                            android:onClick="filterArea"
                             android:padding="8dp"
                             android:text="50평대"
                             android:textColor="@color/black" />
 
                         <TextView
+                            android:id="@+id/filter_tv_area_60"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="1dp"
                             android:layout_weight="1"
                             android:background="@color/white"
                             android:gravity="center"
+                            android:onClick="filterArea"
                             android:padding="8dp"
                             android:text="60평 이상"
                             android:textColor="@color/black" />
@@ -279,33 +301,39 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/filter_date_all"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@drawable/input_back"
                         android:gravity="center"
+                        android:onClick="filterDate"
                         android:padding="8dp"
                         android:text="전체"
                         android:textColor="@color/black" />
 
                     <TextView
+                        android:id="@+id/filter_date_5_years"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
                         android:layout_weight="1"
                         android:background="@drawable/input_back"
                         android:gravity="center"
+                        android:onClick="filterDate"
                         android:padding="8dp"
                         android:text="5년 이내"
                         android:textColor="@color/black" />
 
                     <TextView
+                        android:id="@+id/filter_date_10_years"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
                         android:layout_weight="1"
                         android:background="@drawable/input_back"
                         android:gravity="center"
+                        android:onClick="filterDate"
                         android:padding="8dp"
                         android:text="10년 이내"
                         android:textColor="@color/black" />
@@ -319,33 +347,39 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/filter_date_15_years"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@drawable/input_back"
                         android:gravity="center"
+                        android:onClick="filterDate"
                         android:padding="8dp"
                         android:text="15년 이내"
                         android:textColor="@color/black" />
 
                     <TextView
+                        android:id="@+id/filter_date_20_years"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
                         android:layout_weight="1"
                         android:background="@drawable/input_back"
                         android:gravity="center"
+                        android:onClick="filterDate"
                         android:padding="8dp"
                         android:text="20년 이내"
                         android:textColor="@color/black" />
 
                     <TextView
+                        android:id="@+id/filter_date_25_years"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
                         android:layout_weight="1"
                         android:background="@drawable/input_back"
                         android:gravity="center"
+                        android:onClick="filterDate"
                         android:padding="8dp"
                         android:text="25년 이내"
                         android:textColor="@color/black" />
@@ -392,29 +426,33 @@
                         android:layout_weight="1"
                         android:background="@drawable/input_back"
                         android:gravity="center"
+                        android:onClick="filterAge"
                         android:padding="8dp"
                         android:text="전체"
-                        android:onClick="filterOnClick"
                         android:textColor="@color/black" />
 
                     <TextView
+                        android:id="@+id/filter_tv_age_200"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
                         android:layout_weight="1"
                         android:background="@drawable/input_back"
                         android:gravity="center"
+                        android:onClick="filterAge"
                         android:padding="8dp"
                         android:text="200세대 이상"
                         android:textColor="@color/black" />
 
                     <TextView
+                        android:id="@+id/filter_tv_age_500"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
                         android:layout_weight="1"
                         android:background="@drawable/input_back"
                         android:gravity="center"
+                        android:onClick="filterAge"
                         android:padding="8dp"
                         android:text="500세대 이상"
                         android:textColor="@color/black" />
@@ -428,22 +466,26 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/filter_tv_age_1000"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@drawable/input_back"
                         android:gravity="center"
+                        android:onClick="filterAge"
                         android:padding="8dp"
                         android:text="1000세대 이상"
                         android:textColor="@color/black" />
 
                     <TextView
+                        android:id="@+id/filter_tv_age_2000"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
                         android:layout_weight="1"
                         android:background="@drawable/input_back"
                         android:gravity="center"
+                        android:onClick="filterAge"
                         android:padding="8dp"
                         android:text="2000세대 이상"
                         android:textColor="@color/black" />
@@ -465,15 +507,16 @@
         </LinearLayout>
 
     </ScrollView>
+
     <Button
         android:id="@+id/filter_btn_ok"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:background="@color/zigbang"
+        android:gravity="center"
+        android:onClick="filterOnClick"
         android:text="검색하기"
         android:textColor="@color/white"
-        android:textStyle="bold"
-        android:onClick="filterOnClick"
-        android:gravity="center"
-        android:layout_alignParentBottom="true" />
+        android:textStyle="bold" />
 </RelativeLayout>

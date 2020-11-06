@@ -11,6 +11,14 @@ public interface FindMapRetrofitInterface {
     @GET("/apart")
     Call<FindResponse> getApartList(@Query("sellType") String sellType);
 
+    @GET("/apart")
+    Call<FindResponse> getSearchApartList(
+            @Query("sellType") String sellType,
+            @Query("acreage") int acreage,
+            @Query("enterAt") int enterAt,
+            @Query("liveNum") int liveNum
+    );
+
     @GET("/apart/{apartIndex}")
     Call<FindResponse> getApart(@Path("apartIndex") int apartIndex);
 }

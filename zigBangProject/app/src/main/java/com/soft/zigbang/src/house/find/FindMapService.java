@@ -64,6 +64,29 @@ public class FindMapService {
     }
 
     /**
+     * 아파트 검색 조회
+     */
+    void getSearchApartList(String sellType, int acreage, int enterAt, int liveNum) {
+        final FindMapRetrofitInterface findMapRetrofitInterface = getRetrofit().create(FindMapRetrofitInterface.class);
+        findMapRetrofitInterface.getSearchApartList(sellType,acreage,enterAt,liveNum).enqueue(new Callback<FindResponse>() {
+            @Override
+            public void onResponse(Call<FindResponse> call, Response<FindResponse> response) {
+                final FindResponse findResponse = response.body();
+                if(findResponse == null) {
+                    mFindMapActivityView.getSearchApartFailure(null);
+                    return;
+                }
+                mFindMapActivityView.getSearchApartSuccess(findResponse.getResult());
+            }
+
+            @Override
+            public void onFailure(Call<FindResponse> call, Throwable t) {
+                mFindMapActivityView.getSearchApartFailure(null);
+            }
+        });
+    }
+
+    /**
      * 매물 조회
      */
 }

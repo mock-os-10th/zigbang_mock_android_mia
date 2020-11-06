@@ -50,7 +50,8 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="@drawable/round_corner_back_left"
-                    android:gravity="center_vertical">
+                    android:gravity="center_vertical"
+                    android:onClick="apartOnClick">
 
                     <ImageView
                         android:id="@+id/apart_iv_first"
@@ -80,7 +81,8 @@
                     android:layout_marginStart="0.5dp"
                     android:layout_weight="1"
                     android:background="@drawable/round_corner_back_right"
-                    android:gravity="center_vertical">
+                    android:gravity="center_vertical"
+                    android:onClick="apartOnClick">
 
                     <ImageView
                         android:id="@+id/apart_iv_second"

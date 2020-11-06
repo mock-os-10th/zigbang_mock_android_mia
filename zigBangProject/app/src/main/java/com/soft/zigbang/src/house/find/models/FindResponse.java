@@ -67,6 +67,8 @@ public class FindResponse implements Serializable {
         private String mName;
         @SerializedName("si")
         private String mSi;
+        @SerializedName("address")
+        private String mAddress;
 
         public Long getApartIndex() {
             return mApartIndex;
@@ -138,6 +140,14 @@ public class FindResponse implements Serializable {
 
         public void setSi(String si) {
             mSi = si;
+        }
+
+        public String getAddress() {
+            return mAddress;
+        }
+
+        public void setAddress(String address) {
+            mSi = address;
         }
 
     }
