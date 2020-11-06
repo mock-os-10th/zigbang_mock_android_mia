@@ -44,6 +44,7 @@ public class ApplicationClass extends Application {
 
     public static int userNo;
 
+    public final static int SUCCESS_CODE = 200;
     @Override
     public void onCreate() {
         super.onCreate();

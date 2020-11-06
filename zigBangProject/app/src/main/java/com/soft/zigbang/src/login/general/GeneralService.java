@@ -11,6 +11,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.soft.zigbang.src.ApplicationClass.SUCCESS_CODE;
 import static com.soft.zigbang.src.ApplicationClass.X_ACCESS_TOKEN;
 import static com.soft.zigbang.src.ApplicationClass.getRetrofit;
 import static com.soft.zigbang.src.ApplicationClass.sSharedPreferences;
@@ -33,12 +34,11 @@ public class GeneralService {
                     return;
                 }
 
-                if(loginResponse.getCode() == 100) {
+                if(loginResponse.getCode() == SUCCESS_CODE) {
+                    SharedPreferences.Editor editor = sSharedPreferences.edit();
+                    editor.putString("X_ACCESS_TOKEN", loginResponse.getResult().getJwt());
+                    editor.apply();
                     mGeneralFragmentView.generalLoginSuccess(loginResponse.getResult().getUserno());
-//                    X_ACCESS_TOKEN = loginResponse.getResult().getJwt();
-//                    SharedPreferences.Editor editor = sSharedPreferences.edit();
-//                    editor.putString("X_ACCESS_TOKEN", X_ACCESS_TOKEN);
-//                    editor.apply();
                 } else {
                     mGeneralFragmentView.generalLoginFalse(loginResponse.getMessage());
                 }

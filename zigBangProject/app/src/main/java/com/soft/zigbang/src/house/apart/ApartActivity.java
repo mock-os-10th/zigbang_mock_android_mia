@@ -24,8 +24,6 @@ public class ApartActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_apart);
 
-        mApartTvTitle = findViewById(R.id.apart_tv_title);
-        mApartTvDesc = findViewById(R.id.apart_tv_desc);
         mApartTvFirst = findViewById(R.id.apart_tv_first);
         mApartTvSecond = findViewById(R.id.apart_tv_second);
         mApartIvFirst = findViewById(R.id.apart_iv_first);

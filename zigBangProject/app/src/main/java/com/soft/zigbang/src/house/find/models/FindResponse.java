@@ -1,7 +1,6 @@
 package com.soft.zigbang.src.house.find.models;
 
 import com.google.gson.annotations.SerializedName;
-import com.soft.zigbang.src.house.models.HouseResponse;
 
 import java.io.Serializable;
 import java.util.List;

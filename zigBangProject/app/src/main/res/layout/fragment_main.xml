@@ -6,19 +6,22 @@
     android:layout_height="match_parent"
     android:background="#F8F6F6"
     android:orientation="vertical"
-    android:padding="20dp">
+    android:padding="30dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="80dp"
+        android:gravity="center_vertical"
         android:layout_weight="1.5"
+        android:layout_marginTop="60dp"
         android:orientation="vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="어떤 집을 찾고 계세요?"
+            android:textSize="18sp"
+            android:layout_marginBottom="5dp"
             android:textColor="@color/black" />
 
         <LinearLayout
@@ -29,7 +32,7 @@
             <RelativeLayout
                 android:id="@+id/apart_layout"
                 android:layout_width="0dp"
-                android:layout_height="130dp"
+                android:layout_height="120dp"
                 android:layout_weight="1"
                 android:background="@drawable/round_corner_back_1"
                 android:padding="15dp">
@@ -40,7 +43,7 @@
                     android:layout_height="wrap_content"
                     android:text="아파트"
                     android:textColor="@color/black"
-                    android:textSize="18sp"
+                    android:textSize="24sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -49,7 +52,7 @@
                     android:layout_below="@+id/text_apart"
                     android:layout_marginTop="5dp"
                     android:text="매매/전·월세\n신축분양"
-                    android:textSize="12sp" />
+                    android:textSize="14sp" />
 
                 <ImageView
                     android:layout_width="70dp"
@@ -63,7 +66,7 @@
             <RelativeLayout
                 android:id="@+id/two_room_layout"
                 android:layout_width="0dp"
-                android:layout_height="130dp"
+                android:layout_height="120dp"
                 android:layout_weight="1"
                 android:layout_marginLeft="10dp"
                 android:background="@drawable/round_corner_back_1"
@@ -75,7 +78,7 @@
                     android:layout_height="wrap_content"
                     android:text="빌라·투룸+"
                     android:textColor="@color/black"
-                    android:textSize="18sp"
+                    android:textSize="24sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -84,7 +87,7 @@
                     android:layout_below="@+id/text_two_room"
                     android:layout_marginTop="5dp"
                     android:text="신축분양/매매\n전·월세"
-                    android:textSize="12sp" />
+                    android:textSize="14sp" />
 
                 <ImageView
                     android:layout_width="60dp"
@@ -103,7 +106,7 @@
             <RelativeLayout
                 android:id="@+id/one_room_layout"
                 android:layout_width="0dp"
-                android:layout_height="130dp"
+                android:layout_height="120dp"
                 android:layout_weight="1"
                 android:background="@drawable/round_corner_back_1"
                 android:padding="15dp">
@@ -114,7 +117,7 @@
                     android:layout_height="wrap_content"
                     android:text="원룸"
                     android:textColor="@color/black"
-                    android:textSize="18sp"
+                    android:textSize="24sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -123,7 +126,7 @@
                     android:layout_below="@+id/text_one_room"
                     android:layout_marginTop="5dp"
                     android:text="전·월세"
-                    android:textSize="12sp" />
+                    android:textSize="14sp" />
 
                 <ImageView
                     android:layout_width="70dp"
@@ -136,7 +139,7 @@
             <RelativeLayout
                 android:id="@+id/officetel_layout"
                 android:layout_width="0dp"
-                android:layout_height="130dp"
+                android:layout_height="120dp"
                 android:layout_weight="1"
                 android:layout_marginLeft="10dp"
                 android:background="@drawable/round_corner_back_1"
@@ -148,7 +151,7 @@
                     android:layout_height="wrap_content"
                     android:text="오피스텔"
                     android:textColor="@color/black"
-                    android:textSize="18sp"
+                    android:textSize="24sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -157,7 +160,7 @@
                     android:layout_below="@+id/text_officeTel"
                     android:layout_marginTop="5dp"
                     android:text="도시형생활주택\n전·월세"
-                    android:textSize="12sp" />
+                    android:textSize="14sp" />
 
                 <ImageView
                     android:layout_width="70dp"
@@ -181,6 +184,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
+            android:textSize="18sp"
             android:text="창업.사무실 이사를\n고민중이신가요?" />
 
         <LinearLayout
@@ -193,8 +197,9 @@
                 android:layout_width="0dp"
                 android:layout_height="80dp"
                 android:layout_weight="1"
-                android:background="@drawable/round_corner_back_1"
-                android:padding="15dp">
+                android:gravity="center_vertical"
+                android:paddingStart="15dp"
+                android:background="@drawable/round_corner_back_1">
 
                 <TextView
                     android:id="@+id/text_store"
@@ -202,7 +207,7 @@
                     android:layout_height="wrap_content"
                     android:text="상가.점포"
                     android:textColor="@color/black"
-                    android:textSize="18sp"
+                    android:textSize="24sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -211,7 +216,7 @@
                     android:layout_below="@+id/text_store"
                     android:layout_marginTop="5dp"
                     android:text="지역.업종별"
-                    android:textSize="12sp" />
+                    android:textSize="14sp" />
 
             </RelativeLayout>
 
@@ -221,8 +226,9 @@
                 android:layout_height="80dp"
                 android:layout_weight="1"
                 android:layout_marginLeft="10dp"
-                android:background="@drawable/round_corner_back_1"
-                android:padding="15dp">
+                android:paddingStart="15dp"
+                android:gravity="center_vertical"
+                android:background="@drawable/round_corner_back_1">
 
                 <TextView
                     android:id="@+id/text_office"
@@ -230,7 +236,7 @@
                     android:layout_height="wrap_content"
                     android:text="사무실"
                     android:textColor="@color/black"
-                    android:textSize="18sp"
+                    android:textSize="24sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -239,7 +245,7 @@
                     android:layout_below="@+id/text_office"
                     android:layout_marginTop="5dp"
                     android:text="공유오피스"
-                    android:textSize="12sp" />
+                    android:textSize="14sp" />
 
             </RelativeLayout>
         </LinearLayout>
