@@ -1,9 +1,464 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".src.house.oneroom.OneRoomActivity">
+    android:orientation="vertical">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/gray_light"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="330dp"
+            android:background="@color/zigbang"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/one_room_iv_background"
+                android:layout_width="match_parent"
+                android:layout_height="194dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/one_room_back" />
+
+
+            <ImageView
+                android:id="@+id/one_room_iv_back"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="15dp"
+                android:onClick="oneRoomOnClick"
+                android:padding="5dp"
+                android:src="@drawable/arrow_left" />
+
+
+            <LinearLayout
+                android:id="@+id/one_room_linear"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_below="@+id/one_room_iv_background"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginBottom="50dp"
+                android:background="#b4b4b4"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:id="@+id/one_room_rel_first"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/round_corner_back_left"
+                    android:gravity="center_vertical"
+                    android:onClick="oneRoomOnClick">
+
+                    <ImageView
+                        android:id="@+id/one_room_iv_first"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_centerHorizontal="true"
+                        android:background="@drawable/round_corner_back_2"
+                        android:backgroundTint="@color/zigbang"
+                        android:padding="3dp"
+                        android:src="@drawable/one_room_map" />
+
+                    <TextView
+                        android:id="@+id/one_room_tv_first"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/one_room_iv_first"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="5dp"
+                        android:text="매매/전·월세"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/one_room_rel_second"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="0.5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/round_corner_back_right"
+                    android:gravity="center_vertical"
+                    android:onClick="oneRoomOnClick">
+
+                    <ImageView
+                        android:id="@+id/one_room_iv_second"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_centerHorizontal="true"
+                        android:background="@drawable/round_corner_back_2"
+                        android:backgroundTint="@color/zigbang"
+                        android:padding="3dp"
+                        android:src="@drawable/subway" />
+
+                    <TextView
+                        android:id="@+id/one_room_tv_second"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/one_room_iv_second"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="5dp"
+                        android:text="지하철역으로 찾기"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                </RelativeLayout>
+            </LinearLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:background="@drawable/round_corner_back_1"
+            android:gravity="center"
+            android:padding="15dp">
+
+            <ImageView
+                android:id="@+id/one_room_iv_realestate"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/real_estate" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="24dp"
+                android:layout_marginStart="10dp"
+                android:layout_toRightOf="@+id/one_room_iv_realestate"
+                android:gravity="center"
+                android:text="중개사무소에 집 내놓기"
+                android:textSize="16sp" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white">
+
+            <ImageView
+                android:id="@+id/one_room_iv_recent"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_margin="15dp"
+                android:src="@drawable/clock"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/one_room_tv_recent"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
+                android:text="최근 본 방"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toEndOf="@+id/one_room_iv_recent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/one_room_view1"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:background="@color/gray"
+                android:layout_marginTop="15dp"
+                app:layout_constraintTop_toBottomOf="@+id/one_room_tv_recent" />
+            <TextView
+                android:id="@+id/one_room_tv_recent_cont"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:gravity="center"
+                android:text="최근 본 방이 없습니다."
+                android:textColor="#b4b4b4"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/one_room_view1" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@color/white">
+
+            <ImageView
+                android:id="@+id/one_room_iv_heart"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_margin="15dp"
+                android:src="@drawable/heart"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/one_room_tv_heart"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="16dp"
+                android:text="찜한 방"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toEndOf="@+id/one_room_iv_heart"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/one_room_view6"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="15dp"
+                android:background="@color/gray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/one_room_tv_heart" />
+
+            <TextView
+                android:id="@+id/one_room_tv_heart_cont"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:gravity="center"
+                android:text="찜한 방이 없습니다."
+                android:textColor="#b4b4b4"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/one_room_view6" />
+
+            <View
+                android:id="@+id/one_room_view4"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="15dp"
+                android:background="@color/gray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/one_room_tv_heart" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:paddingHorizontal="30dp"
+            android:paddingVertical="15dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/one_room_tv_comma_left"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/one_room_comma"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/one_room_walk_diff"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:gravity="center_horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/one_room_tv_comma_left"
+                android:textColor="#18D2EA"
+                android:text="내가 보고간 매물과 다르다면?" />
+
+            <TextView
+                android:id="@+id/one_room_walk_diff_go"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                android:gravity="center_horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/one_room_walk_diff"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:text="헛걸음 보상 신청하기" />
+
+            <ImageView
+                android:id="@+id/one_room_tv_comma_right"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/one_room_comma_2"
+                app:layout_constraintTop_toBottomOf="@+id/one_room_walk_diff_go"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+            
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:background="@color/white">
+
+            <ImageView
+                android:id="@+id/one_room_iv_news"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_margin="15dp"
+                android:src="@drawable/news"
+                app:layout_constraintBottom_toTopOf="@+id/one_room_view"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/one_room_tv_news"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
+                android:text="최신 뉴스"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toEndOf="@+id/one_room_iv_news"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/one_room_view"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="15dp"
+                android:background="@color/gray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/one_room_tv_news" />
+
+            <ImageView
+                android:id="@+id/one_room_iv_new_1"
+                android:layout_width="0dp"
+                android:layout_height="110dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="5dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/new_1"
+                app:layout_constraintEnd_toStartOf="@+id/one_room_iv_new_2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/one_room_view" />
+
+            <ImageView
+                android:id="@+id/one_room_iv_new_2"
+                android:layout_width="0dp"
+                android:layout_height="110dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="15dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/new_2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/one_room_iv_new_1"
+                app:layout_constraintTop_toBottomOf="@+id/one_room_view" />
+
+            <TextView
+                android:id="@+id/one_room_tv_new_1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="5dp"
+                android:text="수도권 비규제 지역이 오를 수밖에 없는 3가지 이유"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toStartOf="@+id/one_room_iv_new_2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/one_room_iv_new_1" />
+
+            <TextView
+                android:id="@+id/one_room_tv_new_2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="5dp"
+                android:text="분상제 적용 이후 고덕 청약, 경쟁률 537대 1"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/one_room_iv_new_1"
+                app:layout_constraintTop_toBottomOf="@+id/one_room_iv_new_2" />
+
+            <View
+                android:id="@+id/one_room_view2"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/gray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/one_room_tv_new_1" />
+
+            <TextView
+                android:id="@+id/one_room_tv_new_3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginVertical="10dp"
+                android:text="공독주택, 2030년까지 현실화율 90%로 맞춘다"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/one_room_view2" />
+
+            <View
+                android:id="@+id/one_room_view3"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/gray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/one_room_tv_new_3" />
+
+            <TextView
+                android:id="@+id/one_room_tv_new_4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginVertical="10dp"
+                android:text="19년 만에 최악...임대차법 3개월 만에 전세시장 쑥대밭"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/one_room_view3" />
+
+            <View
+                android:id="@+id/one_room_view5"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/gray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/one_room_tv_new_4" />
+
+            <TextView
+                android:id="@+id/one_room_tv_new_5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginVertical="10dp"
+                android:text="국토부, 11월 청년 신혼부부 매입임대 4241가구 입주자..."
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/one_room_view5" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+</ScrollView>
