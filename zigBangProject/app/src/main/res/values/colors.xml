@@ -14,5 +14,7 @@
     <color name="gray_light">#F4F3F3</color>
     <color name="gray">#eeeeee</color>
     <color name="filter_select">#303030</color>
+    <color name="find_detail_blue">#333D80</color>
+
 
 </resources>

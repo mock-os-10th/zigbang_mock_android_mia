@@ -63,4 +63,6 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:25.12.0')
     // firebase Cloud Storage library
     implementation 'com.google.firebase:firebase-storage'
+    implementation 'com.google.firebase:firebase-auth:11.0.4'
 }
+apply plugin: 'com.google.gms.google-services'

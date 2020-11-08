@@ -40,6 +40,7 @@ public class FindMapActivity extends BaseActivity implements FindMapActivityView
     private FragmentManager fm = getSupportFragmentManager();
 
     private MapView mMapView;
+    private ViewGroup mMapContainer;
     private RelativeLayout mFindRelApart;
     private TextView mFindTvApartName, mFindTvApartAddress, mFindTvApartDate, mFindTvType;
 
@@ -54,9 +55,10 @@ public class FindMapActivity extends BaseActivity implements FindMapActivityView
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_map);
 
-        settingMapView(37.5642135, 127.0016985, 7);
+        mMapContainer = (ViewGroup) findViewById(R.id.map_view);
+//        settingMapView(mMapContainer,37.5642135, 127.0016985, 7);
+
         mFindMapService = new FindMapService(this);
-        mMapView.setPOIItemEventListener(this);
         mFindRelApart = findViewById(R.id.find_rel_apart);
         mFindTvApartName = findViewById(R.id.find_tv_apart_name);
         mFindTvApartAddress = findViewById(R.id.find_tv_apart_address);
@@ -70,9 +72,12 @@ public class FindMapActivity extends BaseActivity implements FindMapActivityView
     protected void onStart() {
         super.onStart();
 
-        showProgressDialog();
+        settingMapView(37.5642135, 127.0016985, 7);
 
+        mMapContainer.addView(mMapView);
         mMapView.removeAllPOIItems();
+
+        showProgressDialog();
 
         if (mFilterMap != null) {
             String sellType = mFilterMap.get("sellType").toString();
@@ -84,19 +89,28 @@ public class FindMapActivity extends BaseActivity implements FindMapActivityView
             mFindMapService.getApartList();
         }
 
-        mapCircle();
+//        mapCircle();
     }
+
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mMapContainer.removeView(mMapView);
+    }
+
 
     /**
      * 카카오 맵 생성
      */
     private void settingMapView(double lat, double lnt, int zoom) {
         mMapView = new MapView(this);
-        ViewGroup mapViewContainer = (ViewGroup) findViewById(R.id.map_view);
-        mapViewContainer.addView(mMapView);
+//        ViewGroup mapViewContainer = (ViewGroup) findViewById(R.id.map_view);
+//        mMapContainer.addView(mMapView);
 
         mMapView.setMapCenterPoint(MapPoint.mapPointWithGeoCoord(lat, lnt), true);
         mMapView.setZoomLevel(zoom, true);
+        mMapView.setPOIItemEventListener(this);
     }
 
     /**
