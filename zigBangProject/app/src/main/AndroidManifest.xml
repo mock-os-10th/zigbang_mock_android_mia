@@ -5,6 +5,13 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
 
     <application
         android:name=".src.ApplicationClass"
@@ -30,8 +37,7 @@
         </activity>
         <activity
             android:name=".src.login.LoginActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        </activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
         <activity
             android:name=".src.house.find.FindMapActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
@@ -50,7 +56,6 @@
         <meta-data
             android:name="com.kakao.sdk.AppKey"
             android:value="eb088b5eeeaf8d2e874c2ef58f39cd62" />
-
 
     </application>
 

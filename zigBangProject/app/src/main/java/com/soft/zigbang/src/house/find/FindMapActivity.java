@@ -5,6 +5,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -19,8 +20,11 @@ import com.soft.zigbang.src.house.find.detail.FindDetailActivity;
 import com.soft.zigbang.src.house.find.interfaces.FindMapActivityView;
 import com.soft.zigbang.src.house.find.models.FindResponse;
 
+import net.daum.mf.map.api.CameraUpdateFactory;
+import net.daum.mf.map.api.MapCircle;
 import net.daum.mf.map.api.MapPOIItem;
 import net.daum.mf.map.api.MapPoint;
+import net.daum.mf.map.api.MapPointBounds;
 import net.daum.mf.map.api.MapView;
 
 import java.io.Serializable;
@@ -79,6 +83,8 @@ public class FindMapActivity extends BaseActivity implements FindMapActivityView
         } else {
             mFindMapService.getApartList();
         }
+
+        mapCircle();
     }
 
     /**
@@ -115,7 +121,7 @@ public class FindMapActivity extends BaseActivity implements FindMapActivityView
     public void getApartListSuccess(String text, List<FindResponse.Result> apartList) {
         hideProgressDialog();
         mApartList = apartList;
-        if(mApartList != null && mApartList.size() > 0) {
+        if (mApartList != null && mApartList.size() > 0) {
             for (FindResponse.Result apart : apartList) {
                 createMarker(apart);
             }
@@ -134,7 +140,7 @@ public class FindMapActivity extends BaseActivity implements FindMapActivityView
     @Override
     public void getApartSuccess(List<FindResponse.Result> apartList) {
         hideProgressDialog();
-        if(apartList != null && apartList.size() > 0) {
+        if (apartList != null && apartList.size() > 0) {
             Intent intent = new Intent(this, FindDetailActivity.class);
             Bundle bundle = new Bundle();
             bundle.putSerializable("apartList", (Serializable) apartList);
@@ -264,5 +270,31 @@ public class FindMapActivity extends BaseActivity implements FindMapActivityView
 
     public void removeFragment() {
         fm.beginTransaction().remove(mFindListFragment).commit();
+    }
+
+    public void mapCircle() {
+        MapCircle circle1 = new MapCircle(
+                MapPoint.mapPointWithGeoCoord(37.528522, 127.143703), // center
+                500, // radius
+                Color.argb(128, 255, 0, 0), // strokeColor
+                Color.argb(128, 0, 255, 0) // fillColor
+        );
+        circle1.setTag(1234);
+        mMapView.addCircle(circle1);
+
+        MapCircle circle2 = new MapCircle(
+                MapPoint.mapPointWithGeoCoord(37.551094, 127.019470), // center
+                1000, // radius
+                Color.argb(128, 255, 0, 0), // strokeColor
+                Color.argb(128, 255, 255, 0) // fillColor
+        );
+        circle2.setTag(5678);
+        mMapView.addCircle(circle2);
+
+    // 지도뷰의 중심좌표와 줌레벨을 Circle이 모두 나오도록 조정.
+        MapPointBounds[] mapPointBoundsArray = {circle1.getBound(), circle2.getBound()};
+        MapPointBounds mapPointBounds = new MapPointBounds(mapPointBoundsArray);
+        int padding = 50; // px
+        mMapView.moveCamera(CameraUpdateFactory.newMapPointBounds(mapPointBounds, padding));
     }
 }

@@ -56,5 +56,11 @@ dependencies {
     // kakao login
     implementation group: project.KAKAO_SDK_GROUP, name: 'usermgmt', version: project.KAKAO_SDK_VERSION
 
+    // 권한
+    implementation "gun0912.ted:tedpermission:2.1.0"
 
+    // firebase
+    implementation platform('com.google.firebase:firebase-bom:25.12.0')
+    // firebase Cloud Storage library
+    implementation 'com.google.firebase:firebase-storage'
 }

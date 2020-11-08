@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "814710408868",
+    "firebase_url": "https://zigbang-863a2.firebaseio.com",
+    "project_id": "zigbang-863a2",
+    "storage_bucket": "zigbang-863a2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:814710408868:android:5bcc2a850beb740951c831",
+        "android_client_info": {
+          "package_name": "com.soft.zigbang"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "814710408868-b933q09l38d5iou7n8b5b718tebo1jet.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAmzLgX6LWTdUwHht-Hq8oS4lrYZTeytOw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "814710408868-b933q09l38d5iou7n8b5b718tebo1jet.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

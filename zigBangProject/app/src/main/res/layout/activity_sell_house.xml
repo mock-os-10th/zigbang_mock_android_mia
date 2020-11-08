@@ -1,9 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".house.SellHouseActivity">
+    android:orientation="vertical">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <Button
+        android:id="@+id/sell_house_btn_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="sellHouseOnClick"
+        android:text="사진 올리기" />
+
+    <Button
+        android:id="@+id/sell_house_btn_image2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="sellHouseOnClick"
+        android:text="사진 올리기" />
+
+    <ImageView
+        android:id="@+id/sell_house_iv_image"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:scaleType="fitXY"
+        android:onClick="sellHouseOnClick"
+        android:src="@drawable/image_empty" />
+</LinearLayout>
