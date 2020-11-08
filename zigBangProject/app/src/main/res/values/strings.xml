@@ -12,6 +12,7 @@
     <string name="password_check">비밀번호가 일치하지 않습니다.</string>
     <string name="password_cnt">비밀번호는 8글자 이상이여야 합니다.</string>
     <string name="password_format">비밀번호는 영문과 숫자가 포함되어야 합니다.</string>
+    <string name="login_again">다시 시도해 주세요.</string>
 
     <!-- 아파트 -->
 

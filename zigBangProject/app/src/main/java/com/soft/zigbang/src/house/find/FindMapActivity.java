@@ -68,6 +68,8 @@ public class FindMapActivity extends BaseActivity implements FindMapActivityView
 
         showProgressDialog();
 
+        mMapView.removeAllPOIItems();
+
         if (mFilterMap != null) {
             String sellType = mFilterMap.get("sellType").toString();
             int acreage = Integer.parseInt(mFilterMap.get("acreage").toString());
@@ -107,18 +109,16 @@ public class FindMapActivity extends BaseActivity implements FindMapActivityView
     }
 
     /**
-     * 마커 제거
-     */
-
-    /**
      * 아파트 목록 조회 성공
      */
     @Override
     public void getApartListSuccess(String text, List<FindResponse.Result> apartList) {
         hideProgressDialog();
         mApartList = apartList;
-        for (FindResponse.Result apart : apartList) {
-            createMarker(apart);
+        if(mApartList != null && mApartList.size() > 0) {
+            for (FindResponse.Result apart : apartList) {
+                createMarker(apart);
+            }
         }
     }
 
@@ -134,12 +134,13 @@ public class FindMapActivity extends BaseActivity implements FindMapActivityView
     @Override
     public void getApartSuccess(List<FindResponse.Result> apartList) {
         hideProgressDialog();
-        FindResponse.Result result = apartList.get(0);
-        Intent intent = new Intent(this, FindDetailActivity.class);
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("apart", (Serializable) result);
-        intent.putExtras(bundle);
-        startActivity(intent);
+        if(apartList != null && apartList.size() > 0) {
+            Intent intent = new Intent(this, FindDetailActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("apartList", (Serializable) apartList);
+            intent.putExtras(bundle);
+            startActivity(intent);
+        }
     }
 
     @Override

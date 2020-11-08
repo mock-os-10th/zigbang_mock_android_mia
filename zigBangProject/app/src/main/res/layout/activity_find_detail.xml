@@ -1,9 +1,275 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".src.house.find.detail.FindDetailActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/gray"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/image_empty" />
+
+            <RelativeLayout
+                android:id="@+id/find_detail_rel_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:padding="12dp">
+
+                <TextView
+                    android:id="@+id/detail_apart_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="서천마을쌍용예가"
+                    android:textColor="@color/black"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/detail_apart_name_sub"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/detail_apart_name"
+                    android:text="2012.12 입주 556세대" />
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:padding="5dp"
+                    android:src="@drawable/arrow_down_2" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/find_detail_rel_review"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@color/white"
+                android:padding="13dp">
+
+                <TextView
+                    android:id="@+id/detail_tv_review"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="거주민 리뷰"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/detail_tv_review_score"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_toRightOf="@+id/detail_tv_review"
+                    android:text="4.2"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+                <RatingBar
+                    android:id="@+id/detail_ratingBar_review"
+                    style="@style/Widget.AppCompat.RatingBar.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_toRightOf="@+id/detail_tv_review_score"
+                    android:rating="4" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:background="@color/white"
+                android:padding="12dp"
+                android:text="마을 자체가 6년? 어쨌든 10년이내로 조성 되어 깔끔하며, 치안에 대한 불안이 없음."
+                android:textSize="16sp" />
+
+            <RelativeLayout
+                android:id="@+id/find_detail_rel_type_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@color/white"
+                android:padding="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="타입 정보"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:padding="5dp"
+                    android:src="@drawable/arrow_down_2" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:background="@color/white"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="평당가"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="30B평" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="34D평" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="34E평" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="34N평" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/find_detail_rel_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:background="@color/white">
+
+                <TextView
+                    android:id="@+id/detail_tv_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="직방시세"
+                    android:textColor="@color/black" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/detail_tv_price">
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content">
+
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content">
+
+                    </RelativeLayout>
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/find_detail_rel_realEstate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"></RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/find_detail_rel_apart_rank"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"></RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/find_detail_rel_home_tour"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                android:background="@color/white"</RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/find_detail_rel_reality_tour"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"></RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/find_detail_rel_location"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"></RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/find_detail_rel_school"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"></RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/find_detail_rel_traffic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"></RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/find_detail_rel_apart_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"></RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/find_detail_rel_sub_division"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"></RelativeLayout>
+        </LinearLayout>
+
+    </ScrollView>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/zigbang"
+        android:text="이 아파트의 새로운 소식 받기"
+        android:textColor="@color/white" />
+
+
+</RelativeLayout>

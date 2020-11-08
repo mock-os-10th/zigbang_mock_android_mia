@@ -36,7 +36,7 @@ public class GeneralService {
 
                 if(loginResponse.getCode() == SUCCESS_CODE) {
                     SharedPreferences.Editor editor = sSharedPreferences.edit();
-                    editor.putString("X_ACCESS_TOKEN", loginResponse.getResult().getJwt());
+                    editor.putString(X_ACCESS_TOKEN, loginResponse.getResult().getJwt());
                     editor.apply();
                     mGeneralFragmentView.generalLoginSuccess(loginResponse.getResult().getUserno());
                 } else {

@@ -1,6 +1,7 @@
 package com.soft.zigbang.src.house.find.models;
 
 import com.google.gson.annotations.SerializedName;
+import com.google.gson.internal.$Gson$Preconditions;
 
 import java.io.Serializable;
 import java.util.List;
@@ -14,6 +15,8 @@ public class FindResponse implements Serializable {
     private String mMessage;
     @SerializedName("result")
     private List<FindResponse.Result> mResult;
+    @SerializedName("school")
+    private List<FindResponse.School> mSchool;
 
     public Long getCode() {
         return mCode;
@@ -47,6 +50,14 @@ public class FindResponse implements Serializable {
         mResult = result;
     }
 
+    public List<FindResponse.School> getSchool() {
+        return mSchool;
+    }
+
+    public void setSchool(List<FindResponse.School> school) {
+        mSchool = school;
+    }
+
     public static class Result implements Serializable{
 
         @SerializedName("apartIndex")
@@ -69,6 +80,28 @@ public class FindResponse implements Serializable {
         private String mSi;
         @SerializedName("address")
         private String mAddress;
+
+        @SerializedName("image")
+        private String mImage;
+        @SerializedName("reviewAvg")
+        private String mReviewAvg;
+        @SerializedName("content1")
+        private String mContent1;
+        @SerializedName("reviewNum")
+        private String mReviewNum;
+        @SerializedName("perA")
+        private String mPerA;
+        @SerializedName("perB")
+        private String mPerB;
+        @SerializedName("guNum")
+        private String mGuNum;
+        @SerializedName("dongNum")
+        private String mDongNum;
+        @SerializedName("guRank")
+        private String mGuRank;
+        @SerializedName("dongRank")
+        private String mDongRank;
+
 
         public Long getApartIndex() {
             return mApartIndex;
@@ -150,5 +183,117 @@ public class FindResponse implements Serializable {
             mSi = address;
         }
 
+        public String getImage() {
+            return mImage;
+        }
+
+        public void setImage(String image) {
+            this.mImage = image;
+        }
+
+        public String getReviewAvg() {
+            return mReviewAvg;
+        }
+
+        public void setReviewAvg(String reviewAvg) {
+            this.mReviewAvg = reviewAvg;
+        }
+
+        public String getContent1() {
+            return mContent1;
+        }
+
+        public void setContent1(String content1) {
+            this.mContent1 = content1;
+        }
+
+        public String getReviewNum() {
+            return mReviewNum;
+        }
+
+        public void setReviewNum(String reviewNum) {
+            this.mReviewNum = reviewNum;
+        }
+
+        public String getPerA() {
+            return mPerA;
+        }
+
+        public void setPerA(String perA) {
+            this.mPerA = perA;
+        }
+
+        public String getPerB() {
+            return mPerB;
+        }
+
+        public void setPerB(String perB) {
+            this.mPerB = perB;
+        }
+
+        public String getGuNum() {
+            return mGuNum;
+        }
+
+        public void setGuNum(String guNum) {
+            this.mGuNum = guNum;
+        }
+
+        public String getDongNum() {
+            return mDongNum;
+        }
+
+        public void setDongNum(String dongNum) {
+            this.mDongNum = dongNum;
+        }
+
+        public String getGuRank() {
+            return mGuRank;
+        }
+
+        public void setGuRank(String guRank) {
+            this.mGuRank = guRank;
+        }
+
+        public String getDongRank() {
+            return mDongRank;
+        }
+
+        public void setDongRank(String dongRank) {
+            this.mDongRank = dongRank;
+        }
+    }
+
+    public static class School implements Serializable{
+        @SerializedName("placeIndex")
+        private int mPlaceIndex;
+        @SerializedName("name")
+        private String mName;
+        @SerializedName("distance")
+        private int mDistance;
+
+        public int getPlaceIndex() {
+            return mPlaceIndex;
+        }
+
+        public void setPlaceIndex(int placeIndex) {
+            this.mPlaceIndex = placeIndex;
+        }
+
+        public String getName() {
+            return mName;
+        }
+
+        public void setName(String name) {
+            this.mName = name;
+        }
+
+        public int getDistance() {
+            return mDistance;
+        }
+
+        public void setDistance(int distance) {
+            this.mDistance = distance;
+        }
     }
 }

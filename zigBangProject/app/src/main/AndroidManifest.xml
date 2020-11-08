@@ -25,13 +25,13 @@
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".src.login.LoginActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        </activity>
         <activity
             android:name=".src.house.find.FindMapActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
@@ -40,16 +40,18 @@
             android:name=".src.main.MainActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
-<!--             <intent-filter>-->
-<!--             <action android:name="android.intent.action.MAIN" />-->
+            <!--             <intent-filter>-->
+            <!--             <action android:name="android.intent.action.MAIN" />-->
 
-<!--             <category android:name="android.intent.category.LAUNCHER" />-->
-<!--             </intent-filter>-->
+            <!--             <category android:name="android.intent.category.LAUNCHER" />-->
+            <!--             </intent-filter>-->
         </activity>
 
         <meta-data
             android:name="com.kakao.sdk.AppKey"
             android:value="eb088b5eeeaf8d2e874c2ef58f39cd62" />
+
+
     </application>
 
 </manifest>
