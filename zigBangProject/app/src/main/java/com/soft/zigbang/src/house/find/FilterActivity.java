@@ -24,14 +24,9 @@ public class FilterActivity extends BaseActivity {
     private RadioGroup radioGroupDate1, radioGroupDate2;
     private RadioGroup radioGroupAges1, radioGroupAges2;
 
-    private RadioButton radioBtnSell, radioBtnMonth;
-    private RadioButton radioBtnAreaAll, radioBtnAreaLow10, radioBtnArea10, radioBtnArea20,
-            radioBtnArea30, radioBtnArea40, radioBtnArea50, radioBtnArea60;
-    private RadioButton radioBtnDateAll, radioBtnDate5, radioBtnDate10,
-            radioBtnDate15, radioBtnDate20, radioBtnDate25;
-    private RadioButton radioBtnAgesAll, radioBtnAges200, radioBtnAges500, radioBtnAges1000, radioBtnAges2000;
+    private RadioButton radioBtnSell, radioBtnAreaAll, radioBtnDateAll, radioBtnAgesAll;
 
-    private String sellType = "";
+    private String sellType = "A";
     private int acreage = 0;
     private int enterAt = 0;
     private int liveNum = 0;
@@ -64,10 +59,7 @@ public class FilterActivity extends BaseActivity {
         radioBtnDateAll = findViewById(R.id.filter_radio_date_all);
         radioBtnAgesAll = findViewById(R.id.filter_radio_age_all);
 
-        radioBtnSell.setChecked(true);
-        radioBtnAreaAll.setChecked(true);
-        radioBtnDateAll.setChecked(true);
-        radioBtnAgesAll.setChecked(true);
+        resetButton();
 
     }
 
@@ -214,13 +206,16 @@ public class FilterActivity extends BaseActivity {
         }
     };
 
-    @SuppressLint("NonConstantResourceId")
     public void filterOnClick(View view) {
         switch (view.getId()) {
             case R.id.filter_btn_ok:
                 Intent intent = new Intent();
                 Bundle bundle = new Bundle();
-
+//
+//                filterMap.put("sellType", "B");
+//                filterMap.put("acreage", "0");
+//                filterMap.put("enterAt", "10");
+//                filterMap.put("liveNum", "100");
                 filterMap.put("sellType", sellType);
                 filterMap.put("acreage", acreage);
                 filterMap.put("enterAt", enterAt);
@@ -231,10 +226,27 @@ public class FilterActivity extends BaseActivity {
                 setResult(RESULT_OK, intent);
                 finish();
                 break;
+            case R.id.filter_tv_reset:
+                resetButton();
+                break;
             case R.id.filter_iv_close:
                 finish();
                 break;
         }
     }
 
+    private void resetButton() {
+        radioGroupSell.clearCheck();
+        radioGroupArea1.clearCheck();
+        radioGroupArea2.clearCheck();
+        radioGroupDate1.clearCheck();
+        radioGroupDate2.clearCheck();
+        radioGroupAges1.clearCheck();
+        radioGroupAges2.clearCheck();
+
+        radioBtnSell.setChecked(true);
+        radioBtnAreaAll.setChecked(true);
+        radioBtnDateAll.setChecked(true);
+        radioBtnAgesAll.setChecked(true);
+    }
 }
