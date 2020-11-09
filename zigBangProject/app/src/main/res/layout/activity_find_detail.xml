@@ -17,11 +17,33 @@
             android:background="@color/gray"
             android:orientation="vertical">
 
-            <ImageView
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="180dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/image_empty" />
+                android:layout_height="175dp">
+
+                <ImageView
+                    android:id="@+id/find_detail_iv_apart"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/image_empty" />
+
+                <ImageView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_toLeftOf="@+id/detail_iv_like"
+                    android:src="@drawable/unit" />
+
+                <ImageView
+                    android:id="@+id/detail_iv_like"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/like" />
+            </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/find_detail_rel_name"
@@ -36,7 +58,7 @@
                     android:layout_height="wrap_content"
                     android:text="서천마을쌍용예가"
                     android:textColor="@color/black"
-                    android:textSize="22sp"
+                    android:textSize="23sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -93,11 +115,12 @@
                     android:theme="@style/RatingBar" />
 
                 <TextView
+                    android:id="@+id/find_detail_tv_review_cnt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
                     android:layout_toLeftOf="@+id/detail_tv_review_x"
                     android:text="+2개"
-                    android:layout_marginEnd="5dp"
                     android:textColor="@color/zigbang" />
 
                 <TextView
@@ -118,6 +141,7 @@
             </RelativeLayout>
 
             <TextView
+                android:id="@+id/find_detail_tv_review_cont"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="1dp"
@@ -165,6 +189,7 @@
                     android:gravity="center"
                     android:text="평당가"
                     android:textColor="@color/black"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -172,28 +197,32 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="30B평" />
+                    android:text="30B평"
+                    android:textSize="16sp" />
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="34D평" />
+                    android:text="34D평"
+                    android:textSize="16sp" />
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="34E평" />
+                    android:text="34E평"
+                    android:textSize="16sp" />
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="34N평" />
+                    android:text="34N평"
+                    android:textSize="16sp" />
             </LinearLayout>
 
             <RelativeLayout
@@ -209,8 +238,17 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12sp"
                     android:layout_marginTop="12sp"
-                    android:text="직방시세"
+                    android:text="직방시세®"
                     android:textColor="@color/black" />
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="12sp"
+                    android:layout_toRightOf="@+id/detail_tv_price"
+                    android:padding="2dp"
+                    android:src="@drawable/question" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -230,7 +268,7 @@
                             android:layout_height="wrap_content"
                             android:text="매매 470만"
                             android:textColor="@color/find_detail_blue"
-                            android:textSize="18sp"
+                            android:textSize="20sp"
                             android:textStyle="bold" />
 
                         <TextView
@@ -239,6 +277,7 @@
                             android:layout_height="wrap_content"
                             android:layout_alignBottom="@+id/detail_tv_sell_value"
                             android:layout_toRightOf="@id/detail_tv_sell_value"
+                            android:textColor="@color/find_detail_blue"
                             android:text="/3.3㎡"
                             android:textSize="11sp" />
 
@@ -255,7 +294,7 @@
                             android:layout_height="wrap_content"
                             android:text="전세 470만"
                             android:textColor="@color/find_detail_blue"
-                            android:textSize="18sp"
+                            android:textSize="20sp"
                             android:textStyle="bold" />
 
                         <TextView
@@ -264,6 +303,7 @@
                             android:layout_height="wrap_content"
                             android:layout_alignBottom="@+id/detail_tv_month_value"
                             android:layout_toRightOf="@id/detail_tv_month_value"
+                            android:textColor="@color/find_detail_blue"
                             android:text="/3.3㎡"
                             android:textSize="11sp" />
 
@@ -282,34 +322,42 @@
                     android:id="@+id/detail_tv_easy_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/black"
-                    android:text="실거래가 이지뷰" />
+                    android:text="실거래가 이지뷰"
+                    android:textColor="@color/black" />
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_toRightOf="@+id/detail_tv_easy_view"
+                    android:padding="2dp"
+                    android:src="@drawable/question" />
 
                 <LinearLayout
                     android:id="@+id/detail_linear_type"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
                     android:background="@color/gray"
-                    android:padding="1dp"
-                    android:layout_alignParentRight="true">
+                    android:padding="1dp">
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
                         android:background="@color/filter_select"
-                        android:textColor="@color/white"
-                        android:padding="3dp"
                         android:gravity="center"
-                        android:text="전체" />
+                        android:padding="3dp"
+                        android:text="전체"
+                        android:textColor="@color/white" />
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
                         android:background="@color/white"
-                        android:padding="3dp"
                         android:gravity="center"
+                        android:padding="3dp"
                         android:text="매매" />
 
                     <TextView
@@ -323,74 +371,78 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_marginTop="10dp"
                     android:id="@+id/find_detail_linear_years"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    android:background="@color/gray"
                     android:layout_below="@+id/detail_linear_type"
-                    android:layout_centerHorizontal="true">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:paddingHorizontal="5dp"
-                        android:textSize="11sp"
-                        android:background="@color/white"
-                        android:gravity="center"
-                        android:text="1년" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:background="@color/white"
-                        android:layout_marginStart="1dp"
-                        android:layout_weight="1"
-                        android:textSize="11sp"
-                        android:paddingHorizontal="5dp"
-                        android:text="3년" />
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/gray">
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@color/white"
-                        android:layout_marginStart="1dp"
-                        android:paddingHorizontal="5dp"
                         android:gravity="center"
-                        android:textSize="11sp"
-                        android:text="5년" />
+                        android:paddingHorizontal="5dp"
+                        android:text="1년"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:textSize="11sp" />
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:background="@color/white"
                         android:layout_marginStart="1dp"
-                        android:textSize="11sp"
+                        android:layout_weight="1"
+                        android:background="@color/white"
+                        android:gravity="center"
+                        android:paddingHorizontal="5dp"
+                        android:text="3년"
+                        android:textSize="11sp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="1dp"
+                        android:layout_weight="1"
+                        android:background="@color/white"
+                        android:gravity="center"
+                        android:paddingHorizontal="5dp"
+                        android:text="5년"
+                        android:textSize="11sp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="1dp"
                         android:layout_weight="1.5"
+                        android:background="@color/white"
+                        android:gravity="center"
                         android:paddingHorizontal="5dp"
-                        android:text="전체" />
+                        android:text="전체"
+                        android:textSize="11sp" />
                 </LinearLayout>
 
                 <TextView
-                    android:layout_marginVertical="10dp"
                     android:id="@+id/find_detail_tv_real_time"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
-                    android:background="@drawable/input_back"
                     android:layout_below="@+id/find_detail_linear_years"
+                    android:layout_marginVertical="10dp"
+                    android:background="@drawable/input_back"
                     android:gravity="center"
                     android:text="실거래 소식이 없습니다" />
 
                 <TextView
+                    android:id="@+id/detail_tv_apart_like"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_below="@+id/find_detail_tv_real_time"
                     android:background="@drawable/round_corner_back_orange"
                     android:gravity="center"
+                    android:onClick="findDetailOnClick"
                     android:text="+ 최근 실거래가 소식 받기"
                     android:textColor="@color/zigbang"
                     android:textSize="16sp"
@@ -511,6 +563,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/find_detail_tv_dong_rank"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="남주동 1위"
@@ -519,6 +572,7 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/find_detail_tv_dong_cnt"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="총 3단지 중" />
@@ -531,6 +585,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/find_detail_tv_gu_rank"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="청주시 상당구 94위"
@@ -539,6 +594,7 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/find_detail_tv_gu_cnt"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="총 111단지 중" />
@@ -592,6 +648,7 @@
                 android:padding="12dp">
 
                 <TextView
+                    android:id="@+id/find_detail_tv_address"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="충청북도 청주시 상당구 문화동 118" />
@@ -800,5 +857,89 @@
         android:text="이 아파트의 새로운 소식 받기"
         android:textColor="@color/white" />
 
+    <LinearLayout
+        android:id="@+id/find_detail_linear_like"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/gray"
+        android:orientation="vertical"
+        android:visibility="invisible">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:paddingHorizontal="10dp"
+                android:paddingTop="10dp"
+                android:text="관심 아파트로 등록되었습니다."
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/text2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/text"
+                android:background="@color/white"
+                android:paddingHorizontal="10dp"
+                android:paddingBottom="10dp"
+                android:text="실거래가, 거부민 리뷰, 아파트 리포트 등\n관심 아파트의 새로운 소식이 제공됩니다."
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/text2"
+                android:layout_alignParentRight="true"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="15dp"
+                android:text="관심취소"
+                android:textSize="12sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@color/white"
+            android:padding="15dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="소식 받을 타입"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="전체"
+                android:textColor="@color/zigbang" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:paddingHorizontal="15dp"
+            android:paddingVertical="10dp">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/zigbang_button"
+                android:text="확인"
+                android:textColor="@color/white" />
+        </RelativeLayout>
+    </LinearLayout>
 
 </RelativeLayout>

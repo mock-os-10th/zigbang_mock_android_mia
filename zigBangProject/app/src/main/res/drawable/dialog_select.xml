@@ -6,7 +6,9 @@
         </shape>
     </item>
     <item android:state_checked="false">
-        <solid android:color="@color/black"/>
+        <shape>
+            <stroke android:color="@color/black"/>
+        </shape>
     </item>
 
 </selector>

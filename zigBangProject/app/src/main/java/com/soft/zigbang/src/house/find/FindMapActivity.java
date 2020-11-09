@@ -3,6 +3,7 @@ package com.soft.zigbang.src.house.find;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -121,11 +122,12 @@ public class FindMapActivity extends BaseActivity implements FindMapActivityView
     private void createMarker(FindResponse.Result apart) {
         MapPOIItem marker = new MapPOIItem();
         marker.setItemName(apart.getName());
-        marker.setTag(apart.getApartIndex().intValue());
+        marker.setTag(apart.getApartIndex());
         marker.setMapPoint(MapPoint.mapPointWithGeoCoord(apart.getLatitude(), apart.getLongitude()));
-//        marker.setSelectedMarkerType(MapPOIItem.MarkerType.RedPin);
         marker.setMarkerType(MapPOIItem.MarkerType.CustomImage);
         marker.setCustomImageResourceId(R.drawable.marker_2);
+//        marker.setSelectedMarkerType(MapPOIItem.MarkerType.CustomImage);
+//        marker.setCustomSelectedImageResourceId(R.drawable.sss);
         marker.setCustomImageAutoscale(false); // 지도 라이브러리의 스케일 기능을 꺼줌.
         mMapView.addPOIItem(marker);
     }
@@ -154,14 +156,17 @@ public class FindMapActivity extends BaseActivity implements FindMapActivityView
      * 아파트 개별 조회
      */
     @Override
-    public void getApartSuccess(List<FindResponse.Result> apartList) {
+    public void getApartSuccess(List<FindResponse.Result> apartList, List<FindResponse.School> schools) {
         hideProgressDialog();
         if (apartList != null && apartList.size() > 0) {
             Intent intent = new Intent(this, FindDetailActivity.class);
             Bundle bundle = new Bundle();
             bundle.putSerializable("apartList", (Serializable) apartList);
+            bundle.putSerializable("schools", (Serializable) schools);
             intent.putExtras(bundle);
             startActivity(intent);
+        } else {
+            showCustomToast("상세정보가 없습니다.");
         }
     }
 
@@ -178,9 +183,14 @@ public class FindMapActivity extends BaseActivity implements FindMapActivityView
     public void getSearchApartSuccess(List<FindResponse.Result> apartList) {
         mMapView.removeAllPOIItems();
 //        mApartList = apartList;
+        if(apartList.size() == 0) {
+            showCustomToast("해당 조건에 맞는 아파트가 없습니다.");
+        }
+
         for (FindResponse.Result apart : apartList) {
             createMarker(apart);
         }
+
         hideProgressDialog();
     }
 
@@ -192,6 +202,7 @@ public class FindMapActivity extends BaseActivity implements FindMapActivityView
     /**
      * 뷰 클릭
      */
+    @SuppressLint("NonConstantResourceId")
     public void findOnClick(View view) {
         switch (view.getId()) {
             case R.id.find_iv_back: // 뒤로가기
@@ -209,8 +220,7 @@ public class FindMapActivity extends BaseActivity implements FindMapActivityView
                 dialog.getWindow().setLayout(1180, 925);
                 break;
             case R.id.find_linear_filter: // 필터 적용 검색
-                Intent intent = new Intent(this, FilterActivity.class);
-                startActivityForResult(intent, 100);
+                startActivityForResult(new Intent(this, FilterActivity.class), 100);
                 break;
             case R.id.find_rel_apart:
                 showProgressDialog();
@@ -297,8 +307,10 @@ public class FindMapActivity extends BaseActivity implements FindMapActivityView
 
     private String getDate(String date) {
         String returnDate = "";
-        String[] dateStr = date.split("");
-        returnDate += dateStr[0] + dateStr[1] + dateStr[2];
+        String[] dateStr = date.split(" ");
+
+        String[] enterAtStr = dateStr[0].split("-");
+        returnDate += enterAtStr[0] + "." + enterAtStr[1] + " 입주";
 
         return returnDate;
     }

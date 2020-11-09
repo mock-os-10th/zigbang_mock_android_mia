@@ -73,7 +73,7 @@
                         android:layout_below="@+id/one_room_iv_first"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="5dp"
-                        android:text="매매/전·월세"
+                        android:text="지도로 방 찾기"
                         android:textColor="@color/black"
                         android:textSize="14sp"
                         android:textStyle="bold" />
@@ -461,6 +461,15 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/one_room_view5" />
+
+            <View
+                android:layout_width="0dp"
+                app:layout_constraintTop_toBottomOf="@+id/one_room_tv_new_5"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_height="100dp"
+                android:background="@color/white" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
 </ScrollView>

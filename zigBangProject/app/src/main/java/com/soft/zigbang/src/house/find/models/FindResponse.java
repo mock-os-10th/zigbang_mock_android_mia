@@ -58,10 +58,10 @@ public class FindResponse implements Serializable {
         mSchool = school;
     }
 
-    public static class Result implements Serializable{
+    public static class Result implements Serializable {
 
         @SerializedName("apartIndex")
-        private Long mApartIndex;
+        private int mApartIndex;
         @SerializedName("dong")
         private String mDong;
         @SerializedName("enterAt")
@@ -84,30 +84,31 @@ public class FindResponse implements Serializable {
         @SerializedName("image")
         private String mImage;
         @SerializedName("reviewAvg")
-        private String mReviewAvg;
+        private float mReviewAvg;
         @SerializedName("content1")
         private String mContent1;
         @SerializedName("reviewNum")
-        private String mReviewNum;
+        private int mReviewNum;
         @SerializedName("perA")
-        private String mPerA;
+        private int mPerA;
         @SerializedName("perB")
-        private String mPerB;
+        private int mPerB;
         @SerializedName("guNum")
-        private String mGuNum;
+        private int mGuNum;
         @SerializedName("dongNum")
-        private String mDongNum;
+        private int mDongNum;
         @SerializedName("guRank")
         private String mGuRank;
         @SerializedName("dongRank")
         private String mDongRank;
+        @SerializedName("isLike")
+        private String mIsLike;
 
-
-        public Long getApartIndex() {
+        public int getApartIndex() {
             return mApartIndex;
         }
 
-        public void setApartIndex(Long apartIndex) {
+        public void setApartIndex(int apartIndex) {
             mApartIndex = apartIndex;
         }
 
@@ -180,7 +181,7 @@ public class FindResponse implements Serializable {
         }
 
         public void setAddress(String address) {
-            mSi = address;
+            mAddress = address;
         }
 
         public String getImage() {
@@ -191,11 +192,11 @@ public class FindResponse implements Serializable {
             this.mImage = image;
         }
 
-        public String getReviewAvg() {
+        public float getReviewAvg() {
             return mReviewAvg;
         }
 
-        public void setReviewAvg(String reviewAvg) {
+        public void setReviewAvg(float reviewAvg) {
             this.mReviewAvg = reviewAvg;
         }
 
@@ -207,43 +208,43 @@ public class FindResponse implements Serializable {
             this.mContent1 = content1;
         }
 
-        public String getReviewNum() {
+        public int getReviewNum() {
             return mReviewNum;
         }
 
-        public void setReviewNum(String reviewNum) {
+        public void setReviewNum(int reviewNum) {
             this.mReviewNum = reviewNum;
         }
 
-        public String getPerA() {
+        public int getPerA() {
             return mPerA;
         }
 
-        public void setPerA(String perA) {
+        public void setPerA(int perA) {
             this.mPerA = perA;
         }
 
-        public String getPerB() {
+        public int getPerB() {
             return mPerB;
         }
 
-        public void setPerB(String perB) {
+        public void setPerB(int perB) {
             this.mPerB = perB;
         }
 
-        public String getGuNum() {
+        public int getGuNum() {
             return mGuNum;
         }
 
-        public void setGuNum(String guNum) {
+        public void setGuNum(int guNum) {
             this.mGuNum = guNum;
         }
 
-        public String getDongNum() {
+        public int getDongNum() {
             return mDongNum;
         }
 
-        public void setDongNum(String dongNum) {
+        public void setDongNum(int dongNum) {
             this.mDongNum = dongNum;
         }
 
@@ -262,9 +263,17 @@ public class FindResponse implements Serializable {
         public void setDongRank(String dongRank) {
             this.mDongRank = dongRank;
         }
+
+        public String getIsLike() {
+            return mIsLike;
+        }
+
+        public void setIsLike(String isLike) {
+            this.mIsLike = isLike;
+        }
     }
 
-    public static class School implements Serializable{
+    public static class School implements Serializable {
         @SerializedName("placeIndex")
         private int mPlaceIndex;
         @SerializedName("name")

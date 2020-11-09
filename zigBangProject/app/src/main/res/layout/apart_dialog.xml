@@ -27,8 +27,6 @@
             android:layout_marginHorizontal="20dp"
             android:layout_marginVertical="10dp"
             android:paddingLeft="10dp"
-            android:buttonTint="@color/zigbang"
-            android:checked="true"
             android:text="매매" />
 
         <View
@@ -39,6 +37,7 @@
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/zigbang"
             android:paddingLeft="10dp"
             android:layout_marginHorizontal="20dp"
             android:layout_marginVertical="10dp"
