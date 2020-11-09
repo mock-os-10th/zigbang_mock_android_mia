@@ -2,13 +2,11 @@ package com.soft.zigbang.src.house.oneroom.sell;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -16,6 +14,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -26,22 +27,19 @@ import com.gun0912.tedpermission.TedPermission;
 import com.soft.zigbang.R;
 import com.soft.zigbang.src.BaseActivity;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
 import java.io.InputStream;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+
+import static com.soft.zigbang.src.ApplicationClass.DATE_FORMAT;
 
 public class SellHouseActivity extends BaseActivity {
 
     ImageView imageView;
+    ImageView imageView2;
 
     FirebaseStorage mStorage;
     StorageReference mStorageRef;
-    StorageReference mountainsRef;
-    StorageReference mountainImagesRef;
 
 
     @Override
@@ -52,7 +50,9 @@ public class SellHouseActivity extends BaseActivity {
         checkCameraPermission();
 
         imageView = findViewById(R.id.sell_house_iv_image);
+        imageView2 = findViewById(R.id.sell_house_iv_image2);
 
+        mStorage = FirebaseStorage.getInstance();
 
     }
 
@@ -67,6 +67,9 @@ public class SellHouseActivity extends BaseActivity {
                 Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 startActivityForResult(takePictureIntent, 102);
                 break;
+            case R.id.sell_house_btn_image3:
+                getImage();
+                break;
         }
     }
 
@@ -75,14 +78,16 @@ public class SellHouseActivity extends BaseActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         String uri = "";
+        Uri filePath = null;
         if (resultCode == RESULT_OK) {
             if (requestCode == 101) {
                 try {
                     InputStream in = getContentResolver().openInputStream(data.getData());
                     Bitmap img = BitmapFactory.decodeStream(in);
                     in.close();
-                    uri = data.getData().getPath();
                     imageView.setImageBitmap(img);
+
+                    filePath = data.getData();
                 } catch (Exception e) {
 
                 }
@@ -91,47 +96,55 @@ public class SellHouseActivity extends BaseActivity {
                 Bitmap imageBitmap = (Bitmap) extras.get("data");
                 imageView.setImageBitmap(imageBitmap);
             }
-            uploadImage(uri);
+            uploadImage(filePath);
         }
     }
 
-    public void uploadImage(String uri) {
-        mStorage = FirebaseStorage.getInstance("gs://zigbang-863a2.appspot.com");
-        mStorageRef = mStorage.getReference();
+    public void uploadImage(Uri filePath) {
 
-//        Uri file = Uri.fromFile(new File("path/to/images/rivers.jpg"));
-        Uri file = Uri.fromFile(new File(uri));
+        showProgressDialog();
 
-        StorageReference riversRef = mStorageRef.child("images/" + file.getLastPathSegment());
+        String filename = DATE_FORMAT.format(new Date()) + ".png";
 
-//        imageView.setDrawingCacheEnabled(true);
-//        imageView.buildDrawingCache();
-//        Bitmap bitmap = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
-//        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-//        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-//        byte[] data = baos.toByteArray();
+        // storage 주소와 폴더 파일명 지정
+        mStorageRef = mStorage.getReferenceFromUrl("gs://zigbang-863a2.appspot.com").child("images/" + filename);
+        mStorageRef.putFile(filePath)
+                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        hideProgressDialog();
+                        showCustomToast("업로드 성공");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        showCustomToast("업로드 실패");
+                    }
+                });
+    }
 
-//        UploadTask uploadTask = mountainsRef.putBytes(data);
-        UploadTask uploadTask = riversRef.putFile(file);
-
-        uploadTask.addOnFailureListener(new OnFailureListener() {
+    private void getImage() {
+        mStorageRef = mStorage.getReferenceFromUrl("gs://zigbang-863a2.appspot.com").child("images").child("1_ap_dunchon.png");
+        mStorageRef.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
             @Override
-            public void onFailure(@NonNull Exception exception) {
-                showCustomToast("fail");
-            }
-        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                showCustomToast("success");
-                // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
-                // ...
+            public void onComplete(@NonNull Task<Uri> task) {
+                if(task.isSuccessful()) {
+                    Glide.with(SellHouseActivity.this)
+                            .load(task.getResult())
+                            .override(200, 200)
+                            .into(imageView2);
+                } else {
+                    showCustomToast("이미지 다운로드 실패");
+                }
             }
         });
+
     }
 
     private void checkCameraPermission() {
         TedPermission.with(getApplicationContext())
-                .setRationaleMessage("카메라 권한이 필요합니다.")
+                .setRationaleMessage("카메라 권한이 필요합니다.\n(거부할 경우 진행불가)")
                 .setDeniedMessage("카메라 권한을 거부하셨습니다.")
                 .setPermissionListener(permissionListener)
                 .setPermissions(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA)
@@ -141,12 +154,13 @@ public class SellHouseActivity extends BaseActivity {
     PermissionListener permissionListener = new PermissionListener() {
         @Override
         public void onPermissionGranted() {
-            Toast.makeText(getApplicationContext(), "권한이 허용됨", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(getApplicationContext(), "권한이 허용됨", Toast.LENGTH_SHORT).show();
         }
 
         @Override
         public void onPermissionDenied(ArrayList<String> deniedPermissions) {
-            Toast.makeText(getApplicationContext(), "권한이 거부됨", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "집 내놓기가 취소됩니다.", Toast.LENGTH_SHORT).show();
+            finish();
         }
     };
 }

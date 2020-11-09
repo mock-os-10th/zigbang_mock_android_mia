@@ -29,7 +29,7 @@ public class ApplicationClass extends Application {
     private static ApplicationClass instance;
     private static ApplicationClass getInstance() {
         if(instance == null) {
-            throw new IllegalStateException("This Application does not inherit com.kakao.GlobalApplication");
+            throw new IllegalStateException("This Application does not inherit ApplicationClass");
         }
         return instance;
     }

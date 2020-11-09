@@ -7,7 +7,6 @@
     android:orientation="vertical"
     tools:context=".src.house.find.FilterActivity">
 
-
     <RelativeLayout
         android:id="@+id/filter_rel"
         android:layout_width="match_parent"
@@ -30,7 +29,7 @@
             android:layout_marginStart="10dp"
             android:layout_toRightOf="@+id/filter_iv_close"
             android:text="필터"
-            android:textColor="@color/black"
+            android:textColor="@drawable/radio_text_color"
             android:textSize="16sp" />
 
         <TextView
@@ -39,7 +38,7 @@
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:text="모두 초기화"
-            android:textColor="@color/black" />
+            android:textColor="@drawable/radio_text_color" />
     </RelativeLayout>
 
     <View
@@ -74,7 +73,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="거래 유형"
-                    android:textColor="@color/black" />
+                    android:textColor="@drawable/radio_text_color" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -85,37 +84,38 @@
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
-                <LinearLayout
+                <RadioGroup
+                    android:id="@+id/filter_radio_group_sell"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:orientation="horizontal"
                     android:layout_marginTop="15dp">
 
-                    <TextView
-                        android:id="@+id/filter_tv_sell"
+                    <RadioButton
+                        android:id="@+id/filter_radio_sell"
                         android:layout_width="0dp"
+                        android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="10dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/input_back"
-                        android:backgroundTint="#303030"
+                        android:background="@drawable/radio_back"
+                        android:button="@drawable/radio_back"
                         android:gravity="center"
-                        android:onClick="filterType"
                         android:padding="8dp"
                         android:text="매매"
-                        android:textColor="@color/white" />
+                        android:textColor="@drawable/radio_text_color" />
 
-                    <TextView
-                        android:id="@+id/filter_tv_month"
+                    <RadioButton
+                        android:id="@+id/filter_radio_month"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:button="@drawable/radio_back"
                         android:layout_weight="1"
-                        android:background="@drawable/input_back"
+                        android:background="@drawable/radio_back"
                         android:gravity="center"
-                        android:onClick="filterType"
                         android:padding="8dp"
                         android:text="전월세"
-                        android:textColor="@color/black" />
-                </LinearLayout>
+                        android:textColor="@drawable/radio_text_color" />
+                </RadioGroup>
             </LinearLayout>
 
             <LinearLayout
@@ -131,7 +131,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="면적"
-                    android:textColor="@color/black" />
+                    android:textColor="@drawable/radio_text_color" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -149,65 +149,67 @@
                     android:background="#eeeeee"
                     android:orientation="vertical">
 
-                    <LinearLayout
+                    <RadioGroup
+                        android:id="@+id/fliter_radio_group_area_1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="1dp"
                         android:orientation="horizontal">
 
-                        <TextView
-                            android:id="@+id/filter_tv_area_all"
+                        <RadioButton
+                            android:id="@+id/filter_radio_area_all"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:background="@color/white"
+                            android:background="@drawable/radio_back_area"
+                            android:button="@drawable/radio_back_area"
                             android:gravity="center"
-                            android:onClick="filterArea"
                             android:padding="8dp"
                             android:text="전체"
-                            android:textColor="@color/black" />
+                            android:textColor="@drawable/radio_text_color" />
 
-                        <TextView
-                            android:id="@+id/filter_tv_area_low_10"
+                        <RadioButton
+                            android:id="@+id/filter_radio_area_low_10"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="1dp"
                             android:layout_weight="1"
-                            android:background="@color/white"
+                            android:background="@drawable/radio_back_area"
+                            android:button="@drawable/radio_back_area"
                             android:gravity="center"
-                            android:onClick="filterArea"
                             android:padding="8dp"
                             android:text="10평 이하"
-                            android:textColor="@color/black" />
+                            android:textColor="@drawable/radio_text_color" />
 
-                        <TextView
-                            android:id="@+id/filter_tv_area_10"
+                        <RadioButton
+                            android:id="@+id/filter_radio_area_10"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="1dp"
                             android:layout_weight="1"
-                            android:background="@color/white"
+                            android:background="@drawable/radio_back_area"
+                            android:button="@drawable/radio_back_area"
                             android:gravity="center"
-                            android:onClick="filterArea"
                             android:padding="8dp"
                             android:text="10평대"
-                            android:textColor="@color/black" />
+                            android:textColor="@drawable/radio_text_color" />
 
-                        <TextView
-                            android:id="@+id/filter_tv_area_20"
+                        <RadioButton
+                            android:id="@+id/filter_radio_area_20"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="1dp"
                             android:layout_weight="1"
-                            android:background="@color/white"
+                            android:background="@drawable/radio_back_area"
+                            android:button="@drawable/radio_back_area"
                             android:gravity="center"
-                            android:onClick="filterArea"
                             android:padding="8dp"
                             android:text="20평대"
-                            android:textColor="@color/black" />
-                    </LinearLayout>
+                            android:textColor="@drawable/radio_text_color" />
+                    </RadioGroup>
 
-                    <LinearLayout
+                    <RadioGroup
+                        android:id="@+id/fliter_radio_group_area_2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="1dp"
@@ -215,57 +217,57 @@
                         android:layout_marginBottom="1dp"
                         android:orientation="horizontal">
 
-                        <TextView
-                            android:id="@+id/filter_tv_area_30"
+                        <RadioButton
+                            android:id="@+id/filter_radio_area_30"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:background="@color/white"
+                            android:background="@drawable/radio_back_area"
+                            android:button="@drawable/radio_back_area"
                             android:gravity="center"
-                            android:onClick="filterArea"
                             android:padding="8dp"
                             android:text="30평대"
-                            android:textColor="@color/black" />
+                            android:textColor="@drawable/radio_text_color" />
 
-                        <TextView
-                            android:id="@+id/filter_tv_area_40"
+                        <RadioButton
+                            android:id="@+id/filter_radio_area_40"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="1dp"
                             android:layout_weight="1"
-                            android:background="@color/white"
+                            android:background="@drawable/radio_back_area"
+                            android:button="@drawable/radio_back_area"
                             android:gravity="center"
-                            android:onClick="filterArea"
                             android:padding="8dp"
                             android:text="40평대"
-                            android:textColor="@color/black" />
+                            android:textColor="@drawable/radio_text_color" />
 
-                        <TextView
-                            android:id="@+id/filter_tv_area_50"
+                        <RadioButton
+                            android:id="@+id/filter_radio_area_50"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="1dp"
                             android:layout_weight="1"
-                            android:background="@color/white"
+                            android:background="@drawable/radio_back_area"
+                            android:button="@drawable/radio_back_area"
                             android:gravity="center"
-                            android:onClick="filterArea"
                             android:padding="8dp"
                             android:text="50평대"
-                            android:textColor="@color/black" />
+                            android:textColor="@drawable/radio_text_color" />
 
-                        <TextView
-                            android:id="@+id/filter_tv_area_60"
+                        <RadioButton
+                            android:id="@+id/filter_radio_area_60"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="1dp"
                             android:layout_weight="1"
-                            android:background="@color/white"
+                            android:background="@drawable/radio_back_area"
+                            android:button="@drawable/radio_back_area"
                             android:gravity="center"
-                            android:onClick="filterArea"
                             android:padding="8dp"
                             android:text="60평 이상"
-                            android:textColor="@color/black" />
-                    </LinearLayout>
+                            android:textColor="@drawable/radio_text_color" />
+                    </RadioGroup>
                 </LinearLayout>
 
             </LinearLayout>
@@ -283,7 +285,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="준공년도"
-                    android:textColor="@color/black" />
+                    android:textColor="@drawable/radio_text_color" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -294,97 +296,99 @@
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
-                <LinearLayout
+                <RadioGroup
+                    android:id="@+id/filter_radio_group_date_1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
                     android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/filter_date_all"
+                    <RadioButton
+                        android:id="@+id/filter_radio_date_all"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="@drawable/input_back"
+                        android:background="@drawable/radio_back"
+                        android:button="@drawable/radio_back"
                         android:gravity="center"
-                        android:onClick="filterDate"
                         android:padding="8dp"
                         android:text="전체"
-                        android:textColor="@color/black" />
+                        android:textColor="@drawable/radio_text_color" />
 
-                    <TextView
+                    <RadioButton
                         android:id="@+id/filter_date_5_years"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
                         android:layout_weight="1"
-                        android:background="@drawable/input_back"
+                        android:background="@drawable/radio_back"
+                        android:button="@drawable/radio_back"
                         android:gravity="center"
-                        android:onClick="filterDate"
                         android:padding="8dp"
                         android:text="5년 이내"
-                        android:textColor="@color/black" />
+                        android:textColor="@drawable/radio_text_color" />
 
-                    <TextView
+                    <RadioButton
                         android:id="@+id/filter_date_10_years"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
                         android:layout_weight="1"
-                        android:background="@drawable/input_back"
+                        android:background="@drawable/radio_back"
+                        android:button="@drawable/radio_back"
                         android:gravity="center"
-                        android:onClick="filterDate"
                         android:padding="8dp"
                         android:text="10년 이내"
-                        android:textColor="@color/black" />
+                        android:textColor="@drawable/radio_text_color" />
 
-                </LinearLayout>
+                </RadioGroup>
 
-                <LinearLayout
+                <RadioGroup
+                    android:id="@+id/filter_radio_group_date_2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:orientation="horizontal">
 
-                    <TextView
+                    <RadioButton
                         android:id="@+id/filter_date_15_years"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="@drawable/input_back"
+                        android:background="@drawable/radio_back"
+                        android:button="@drawable/radio_back"
                         android:gravity="center"
-                        android:onClick="filterDate"
                         android:padding="8dp"
                         android:text="15년 이내"
-                        android:textColor="@color/black" />
+                        android:textColor="@drawable/radio_text_color" />
 
-                    <TextView
+                    <RadioButton
                         android:id="@+id/filter_date_20_years"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
                         android:layout_weight="1"
-                        android:background="@drawable/input_back"
+                        android:background="@drawable/radio_back"
+                        android:button="@drawable/radio_back"
                         android:gravity="center"
-                        android:onClick="filterDate"
                         android:padding="8dp"
                         android:text="20년 이내"
-                        android:textColor="@color/black" />
+                        android:textColor="@drawable/radio_text_color" />
 
-                    <TextView
+                    <RadioButton
                         android:id="@+id/filter_date_25_years"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
                         android:layout_weight="1"
-                        android:background="@drawable/input_back"
+                        android:background="@drawable/radio_back"
+                        android:button="@drawable/radio_back"
                         android:gravity="center"
-                        android:onClick="filterDate"
                         android:padding="8dp"
                         android:text="25년 이내"
-                        android:textColor="@color/black" />
+                        android:textColor="@drawable/radio_text_color" />
 
-                </LinearLayout>
+                </RadioGroup>
 
 
             </LinearLayout>
@@ -402,7 +406,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="세대수"
-                    android:textColor="@color/black" />
+                    android:textColor="@drawable/radio_text_color" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -413,82 +417,84 @@
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
-                <LinearLayout
+                <RadioGroup
+                    android:id="@+id/fliter_radio_group_ages_1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
                     android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/filter_tv_age_all"
+                    <RadioButton
+                        android:id="@+id/filter_radio_age_all"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="@drawable/input_back"
+                        android:background="@drawable/radio_back"
+                        android:button="@drawable/radio_back"
                         android:gravity="center"
-                        android:onClick="filterAge"
                         android:padding="8dp"
                         android:text="전체"
-                        android:textColor="@color/black" />
+                        android:textColor="@drawable/radio_text_color" />
 
-                    <TextView
-                        android:id="@+id/filter_tv_age_200"
+                    <RadioButton
+                        android:id="@+id/filter_radio_age_200"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
                         android:layout_weight="1"
-                        android:background="@drawable/input_back"
+                        android:background="@drawable/radio_back"
+                        android:button="@drawable/radio_back"
                         android:gravity="center"
-                        android:onClick="filterAge"
                         android:padding="8dp"
                         android:text="200세대 이상"
-                        android:textColor="@color/black" />
+                        android:textColor="@drawable/radio_text_color" />
 
-                    <TextView
-                        android:id="@+id/filter_tv_age_500"
+                    <RadioButton
+                        android:id="@+id/filter_radio_age_500"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
                         android:layout_weight="1"
-                        android:background="@drawable/input_back"
+                        android:background="@drawable/radio_back"
+                        android:button="@drawable/radio_back"
                         android:gravity="center"
-                        android:onClick="filterAge"
                         android:padding="8dp"
                         android:text="500세대 이상"
-                        android:textColor="@color/black" />
+                        android:textColor="@drawable/radio_text_color" />
 
-                </LinearLayout>
+                </RadioGroup>
 
-                <LinearLayout
+                <RadioGroup
+                    android:id="@+id/fliter_radio_group_ages_2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/filter_tv_age_1000"
+                    <RadioButton
+                        android:id="@+id/filter_radio_age_1000"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="@drawable/input_back"
+                        android:background="@drawable/radio_back"
+                        android:button="@drawable/radio_back"
                         android:gravity="center"
-                        android:onClick="filterAge"
                         android:padding="8dp"
                         android:text="1000세대 이상"
-                        android:textColor="@color/black" />
+                        android:textColor="@drawable/radio_text_color" />
 
-                    <TextView
-                        android:id="@+id/filter_tv_age_2000"
+                    <RadioButton
+                        android:id="@+id/filter_radio_age_2000"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
                         android:layout_weight="1"
-                        android:background="@drawable/input_back"
+                        android:background="@drawable/radio_back"
+                        android:button="@drawable/radio_back"
                         android:gravity="center"
-                        android:onClick="filterAge"
                         android:padding="8dp"
                         android:text="2000세대 이상"
-                        android:textColor="@color/black" />
+                        android:textColor="@drawable/radio_text_color" />
 
                     <TextView
                         android:layout_width="0dp"
@@ -497,9 +503,9 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:padding="5dp"
-                        android:textColor="@color/black" />
+                        android:textColor="@drawable/radio_text_color" />
 
-                </LinearLayout>
+                </RadioGroup>
 
 
             </LinearLayout>

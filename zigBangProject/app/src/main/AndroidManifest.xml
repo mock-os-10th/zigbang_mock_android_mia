@@ -32,7 +32,13 @@
 <!--                <category android:name="android.intent.category.LAUNCHER" />-->
 <!--            </intent-filter>-->
         </activity>
-        <activity android:name=".src.house.find.FilterActivity" />
+        <activity android:name=".src.house.find.FilterActivity">
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+        </activity>
         <activity
             android:name=".src.splash.SplashActivity"
             android:theme="@style/SplashTheme">
@@ -57,7 +63,6 @@
         <activity
             android:name=".src.main.MainActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-
 <!--            <intent-filter>-->
 <!--                <action android:name="android.intent.action.MAIN" />-->
 

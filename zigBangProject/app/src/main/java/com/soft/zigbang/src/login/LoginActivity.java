@@ -1,28 +1,22 @@
 package com.soft.zigbang.src.login;
 
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
 import com.kakao.auth.ApiErrorCode;
-import com.kakao.auth.ApiResponseCallback;
-import com.kakao.auth.AuthService;
 import com.kakao.auth.AuthType;
 import com.kakao.auth.ISessionCallback;
 import com.kakao.auth.Session;
-import com.kakao.auth.network.response.AccessTokenInfoResponse;
 import com.kakao.network.ErrorResult;
 import com.kakao.usermgmt.LoginButton;
 import com.kakao.usermgmt.UserManagement;
-import com.kakao.usermgmt.api.UserApi;
 import com.kakao.usermgmt.callback.MeV2ResponseCallback;
 import com.kakao.usermgmt.response.MeV2Response;
-import com.kakao.usermgmt.response.model.UserProfile;
 import com.kakao.util.exception.KakaoException;
 import com.soft.zigbang.R;
 import com.soft.zigbang.src.BaseActivity;
@@ -54,6 +48,18 @@ public class LoginActivity extends BaseActivity implements KaKaoActivityView {
 
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Session.getCurrentSession().removeCallback(mSessionCallback);
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
+    }
+
+    @SuppressLint("NonConstantResourceId")
     public void LoginOnClick(View v) {
         switch (v.getId()) {
             case R.id.rel_kakao_login:
@@ -62,12 +68,12 @@ public class LoginActivity extends BaseActivity implements KaKaoActivityView {
                 mSession.addCallback(mSessionCallback);
                 mSession.open(AuthType.KAKAO_LOGIN_ALL, LoginActivity.this);
                 break;
+            case R.id.iv_general:
+                fm.beginTransaction().add(R.id.login_container, generalFragment).commit();
+                break;
             case R.id.iv_facebook:
             case R.id.iv_google:
                 showCustomToast(getString(R.string.noImpl));
-                break;
-            case R.id.iv_general:
-                fm.beginTransaction().add(R.id.login_container, generalFragment).commit();
                 break;
         }
     }
@@ -85,7 +91,27 @@ public class LoginActivity extends BaseActivity implements KaKaoActivityView {
         showCustomToast(message);
     }
 
+    public void backFragment(int index) {
+        switch (index) {
+            case 0:
+                fm.beginTransaction().remove(generalFragment).commit();
+                break;
+            case 1:
+                fm.beginTransaction().remove(registerFragment).commit();
+                break;
+        }
+    }
 
+    public void addFragment(int index) {
+        switch (index) {
+            case 0:
+                fm.beginTransaction().add(R.id.login_container, generalFragment).commit();
+                break;
+            case 1:
+                fm.beginTransaction().add(R.id.login_container, registerFragment).commit();
+                break;
+        }
+    }
 
     private class SessionCallback implements ISessionCallback {
         @Override
@@ -116,43 +142,6 @@ public class LoginActivity extends BaseActivity implements KaKaoActivityView {
         }
 
         @Override
-        public void onSessionOpenFailed(KakaoException e) {
-            showCustomToast(getString(R.string.network_error));
-        }
-
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Session.getCurrentSession().removeCallback(mSessionCallback);
-    }
-
-    @Override
-    public void onBackPressed() {
-        finish();
-    }
-
-    public void backFragment(int index) {
-        switch (index) {
-            case 0:
-                fm.beginTransaction().remove(generalFragment).commit();
-                break;
-            case 1:
-                fm.beginTransaction().remove(registerFragment).commit();
-                break;
-        }
-
-    }
-
-    public void addFragment(int index) {
-        switch (index) {
-            case 0:
-                fm.beginTransaction().add(R.id.login_container, generalFragment).commit();
-                break;
-            case 1:
-                fm.beginTransaction().add(R.id.login_container, registerFragment).commit();
-                break;
-        }
+        public void onSessionOpenFailed(KakaoException e) { }
     }
 }

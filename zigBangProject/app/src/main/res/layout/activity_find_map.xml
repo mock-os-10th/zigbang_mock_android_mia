@@ -161,10 +161,12 @@
         <ImageView
             android:id="@+id/find_iv_apart"
             android:layout_width="100dp"
+            android:scaleType="fitXY"
             android:layout_height="match_parent"
             android:src="@drawable/image_empty" />
 
         <LinearLayout
+            android:layout_marginStart="10dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_toRightOf="@+id/find_iv_apart"

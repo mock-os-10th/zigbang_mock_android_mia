@@ -2,29 +2,27 @@ package com.soft.zigbang.src.house.find;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
-import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
-import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.TranslateAnimation;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.soft.zigbang.R;
 import com.soft.zigbang.src.BaseActivity;
 import com.soft.zigbang.src.house.find.detail.FindDetailActivity;
 import com.soft.zigbang.src.house.find.interfaces.FindMapActivityView;
 import com.soft.zigbang.src.house.find.models.FindResponse;
 
-import net.daum.mf.map.api.CameraUpdateFactory;
-import net.daum.mf.map.api.MapCircle;
 import net.daum.mf.map.api.MapPOIItem;
 import net.daum.mf.map.api.MapPoint;
-import net.daum.mf.map.api.MapPointBounds;
 import net.daum.mf.map.api.MapView;
 
 import java.io.Serializable;
@@ -37,18 +35,21 @@ public class FindMapActivity extends BaseActivity implements FindMapActivityView
 
     private FindMapService mFindMapService;
     private FindListFragment mFindListFragment;
-    private FragmentManager fm = getSupportFragmentManager();
 
     private MapView mMapView;
     private ViewGroup mMapContainer;
+
+    private ImageView mFindIvApart;
     private RelativeLayout mFindRelApart;
     private TextView mFindTvApartName, mFindTvApartAddress, mFindTvApartDate, mFindTvType;
 
     private boolean isShowApart;
     private int orgIndex = 0;
+    private int from, to;
+
     private HashMap<String, Object> mFilterMap;
     private List<FindResponse.Result> mApartList = null;
-
+//    private FirebaseStorageManager fbsManager = new FirebaseStorageManager();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +65,7 @@ public class FindMapActivity extends BaseActivity implements FindMapActivityView
         mFindTvApartAddress = findViewById(R.id.find_tv_apart_address);
         mFindTvApartDate = findViewById(R.id.find_tv_apart_date);
         mFindTvType = findViewById(R.id.find_tv_type);
+        mFindIvApart = findViewById(R.id.find_iv_apart);
 
         isShowApart = false;
     }
@@ -145,7 +147,7 @@ public class FindMapActivity extends BaseActivity implements FindMapActivityView
     @Override
     public void getApartListFailure(String message) {
         hideProgressDialog();
-        showCustomToast(message);
+        showCustomToast(getString(R.string.network_error));
     }
 
     /**
@@ -184,7 +186,7 @@ public class FindMapActivity extends BaseActivity implements FindMapActivityView
 
     @Override
     public void getSearchApartFailure(String message) {
-
+        hideProgressDialog();
     }
 
     /**
@@ -192,21 +194,21 @@ public class FindMapActivity extends BaseActivity implements FindMapActivityView
      */
     public void findOnClick(View view) {
         switch (view.getId()) {
-            case R.id.find_iv_back:
+            case R.id.find_iv_back: // 뒤로가기
                 finish();
                 break;
-            case R.id.find_tv_search:
+            case R.id.find_tv_search: // 아파트, 지역, 지하철역, 학교 검색
                 mFindListFragment = FindListFragment.newInstance(mApartList);
-                fm.beginTransaction().add(R.id.rel_container, mFindListFragment).commit();
+                getSupportFragmentManager().beginTransaction().add(R.id.rel_container, mFindListFragment).commit();
                 break;
-            case R.id.find_rel_type:
+            case R.id.find_rel_type: // 매매 or 전세가
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setView(R.layout.apart_dialog);
                 AlertDialog dialog = builder.create();
                 dialog.show();
                 dialog.getWindow().setLayout(1180, 925);
                 break;
-            case R.id.find_linear_filter:
+            case R.id.find_linear_filter: // 필터 적용 검색
                 Intent intent = new Intent(this, FilterActivity.class);
                 startActivityForResult(intent, 100);
                 break;
@@ -240,6 +242,8 @@ public class FindMapActivity extends BaseActivity implements FindMapActivityView
      */
     @Override
     public void onPOIItemSelected(MapView mapView, MapPOIItem mapPOIItem) {
+        FindResponse.Result apart = mApartList.get(mapPOIItem.getTag() - 1);
+        TranslateAnimation animate;
 
         if (orgIndex == 0) {
             orgIndex = mapPOIItem.getTag();
@@ -250,22 +254,27 @@ public class FindMapActivity extends BaseActivity implements FindMapActivityView
             isShowApart = false;
         }
 
-        FindResponse.Result apart = mApartList.get(mapPOIItem.getTag() - 1);
-        mFindTvApartName.setText(apart.getName());
-        mFindTvApartAddress.setText(apart.getSi() + " " + apart.getGu() + " " + apart.getDong() + " " + apart.getLiveNum() + "세대");
-        // 날짜도 같이 받아와야 할 듯
+        Glide.with(FindMapActivity.this)
+                .load(Uri.parse(apart.getImage()))
+                .into(mFindIvApart);
 
-        TranslateAnimation animate;
-        if (!isShowApart) {
-            mFindRelApart.setVisibility(View.VISIBLE);
-            animate = new TranslateAnimation(0, 0, mFindRelApart.getHeight(), 0);
-        } else {
-            animate = new TranslateAnimation(0, 0, 0, mFindRelApart.getHeight());
-        }
+        mFindTvApartName.setText(apart.getName());
+        mFindTvApartAddress.setText(apart.getAddress());
+        mFindTvApartDate.setText(getDate(apart.getEnterAt()));
+        mFindRelApart.setVisibility(View.VISIBLE);
+
+        if (!isShowApart)
+            animate = new TranslateAnimation(from, to, mFindRelApart.getHeight(), to);
+        else
+            animate = new TranslateAnimation(from, to, from, mFindRelApart.getHeight());
+
         animate.setDuration(500);
         animate.setFillAfter(true);
         mFindRelApart.startAnimation(animate);
         isShowApart = !isShowApart;
+
+//        fbsManager.getDownloadImageUrl(apart.getImage()); // url 정보 얻기
+
     }
 
     @Override
@@ -283,32 +292,14 @@ public class FindMapActivity extends BaseActivity implements FindMapActivityView
     }
 
     public void removeFragment() {
-        fm.beginTransaction().remove(mFindListFragment).commit();
+        getSupportFragmentManager().beginTransaction().remove(mFindListFragment).commit();
     }
 
-    public void mapCircle() {
-        MapCircle circle1 = new MapCircle(
-                MapPoint.mapPointWithGeoCoord(37.528522, 127.143703), // center
-                500, // radius
-                Color.argb(128, 255, 0, 0), // strokeColor
-                Color.argb(128, 0, 255, 0) // fillColor
-        );
-        circle1.setTag(1234);
-        mMapView.addCircle(circle1);
+    private String getDate(String date) {
+        String returnDate = "";
+        String[] dateStr = date.split("");
+        returnDate += dateStr[0] + dateStr[1] + dateStr[2];
 
-        MapCircle circle2 = new MapCircle(
-                MapPoint.mapPointWithGeoCoord(37.551094, 127.019470), // center
-                1000, // radius
-                Color.argb(128, 255, 0, 0), // strokeColor
-                Color.argb(128, 255, 255, 0) // fillColor
-        );
-        circle2.setTag(5678);
-        mMapView.addCircle(circle2);
-
-    // 지도뷰의 중심좌표와 줌레벨을 Circle이 모두 나오도록 조정.
-        MapPointBounds[] mapPointBoundsArray = {circle1.getBound(), circle2.getBound()};
-        MapPointBounds mapPointBounds = new MapPointBounds(mapPointBoundsArray);
-        int padding = 50; // px
-        mMapView.moveCamera(CameraUpdateFactory.newMapPointBounds(mapPointBounds, padding));
+        return returnDate;
     }
 }
