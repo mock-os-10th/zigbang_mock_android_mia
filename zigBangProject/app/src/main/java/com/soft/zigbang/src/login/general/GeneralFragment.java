@@ -58,8 +58,8 @@ public class GeneralFragment extends Fragment implements View.OnClickListener, G
         String email = mEditId.getText().toString();
         String pw = mEditPassword.getText().toString();
 
-        email = "suy0226@naver.com";
-        pw = "test1234";
+//        email = "suy0226@naver.com";
+//        pw = "test1234";
         if (!checkValidation(email, pw)) return;
 
         mParentActivity.showProgressDialog();

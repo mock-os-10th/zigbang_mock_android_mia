@@ -733,10 +733,18 @@
                     android:padding="12dp">
 
                     <TextView
+                        android:id="@+id/tv_school"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="학군배정 학교"
                         android:textColor="@color/black" />
+
+                    <ImageView
+                        android:layout_toRightOf="@+id/tv_school"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginStart="5dp"
+                        android:src="@drawable/question"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -785,27 +793,31 @@
                     android:layout_height="0.5dp"
                     android:background="@color/black" />
 
-                <RelativeLayout
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_school_list"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="12dp">
+                    android:layout_height="wrap_content" />
+<!--                <RelativeLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:padding="12dp">-->
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="석교초등학교"
-                        android:textColor="@color/black"
-                        android:textSize="16sp" />
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="석교초등학교"-->
+<!--                        android:textColor="@color/black"-->
+<!--                        android:textSize="16sp" />-->
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:text="751m"
-                        android:textColor="@color/find_detail_blue"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-                </RelativeLayout>
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_alignParentRight="true"-->
+<!--                        android:text="751m"-->
+<!--                        android:textColor="@color/find_detail_blue"-->
+<!--                        android:textSize="18sp"-->
+<!--                        android:textStyle="bold" />-->
+<!--                </RelativeLayout>-->
             </LinearLayout>
 
             <RelativeLayout
@@ -817,12 +829,20 @@
                 android:padding="12dp">
 
                 <TextView
+                    android:id="@+id/tv_traffic"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:text="교통 정보™"
                     android:textColor="@color/black"
                     android:textSize="18sp" />
+
+                <ImageView
+                    android:layout_toRightOf="@+id/tv_traffic"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginStart="5dp"
+                    android:src="@drawable/question"/>
 
                 <ImageView
                     android:layout_width="30dp"

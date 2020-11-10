@@ -280,6 +280,10 @@ public class FindResponse implements Serializable {
         private String mName;
         @SerializedName("distance")
         private int mDistance;
+        @SerializedName("isCoed")
+        private String mIsCode;
+        @SerializedName("isPublic")
+        private String mIsPublic;
 
         public int getPlaceIndex() {
             return mPlaceIndex;
@@ -303,6 +307,22 @@ public class FindResponse implements Serializable {
 
         public void setDistance(int distance) {
             this.mDistance = distance;
+        }
+
+        public String getIsCode() {
+            return mIsCode;
+        }
+
+        public void setIsCode(String isCode) {
+            this.mIsCode = isCode;
+        }
+
+        public String getIsPublic() {
+            return mIsPublic;
+        }
+
+        public void setIsPublic(String isPublic) {
+            this.mIsPublic = isPublic;
         }
     }
 }

@@ -1,6 +1,8 @@
 package com.soft.zigbang.src.house.find.detail;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.net.Uri;
 import android.os.Bundle;
@@ -37,7 +39,7 @@ public class FindDetailActivity extends BaseActivity implements FindDetailActivi
 
     private ImageView mFindDetailIvApart;
     private LinearLayout mLikeLayout;
-
+    private RecyclerView rvSchoolList;
     private FindDetailService mFindDetailService;
 
     @Override
@@ -45,6 +47,9 @@ public class FindDetailActivity extends BaseActivity implements FindDetailActivi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_detail);
 
+        LinearLayoutManager manager = new LinearLayoutManager(getApplicationContext());
+        rvSchoolList = findViewById(R.id.rv_school_list);
+        rvSchoolList.setLayoutManager(manager);
         mMapContainer = (ViewGroup) findViewById(R.id.find_detail_rel_map);
         mFindDetailIvApart = findViewById(R.id.find_detail_iv_apart);
         mFindDetailService = new FindDetailService(this);
@@ -56,6 +61,8 @@ public class FindDetailActivity extends BaseActivity implements FindDetailActivi
             mSchools = (ArrayList<FindResponse.School>) args.getSerializable("schools");
             mApart = list.get(0);
         }
+        FindDetailSchoolAdapter adapter = new FindDetailSchoolAdapter(mSchools);
+        rvSchoolList.setAdapter(adapter);
 
         mApartName = findViewById(R.id.detail_apart_name);
         mApartSubName = findViewById(R.id.detail_apart_name_sub);
