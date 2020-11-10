@@ -82,7 +82,7 @@ public class FindMapActivity extends BaseActivity implements FindMapActivityView
 
         showProgressDialog();
 
-        if (mFilterMap != null) {
+        if (mFilterMap != null && mFilterMap.size() > 0) {
             String sellType = mFilterMap.get("sellType").toString();
             int acreage = Integer.parseInt(mFilterMap.get("acreage").toString());
             int enterAt = Integer.parseInt(mFilterMap.get("enterAt").toString());
@@ -241,6 +241,7 @@ public class FindMapActivity extends BaseActivity implements FindMapActivityView
         super.onActivityResult(requestCode, resultCode, data);
 
         // 필터 적용
+        mFilterMap = new HashMap<>();
         if (resultCode == RESULT_OK) {
             Log.d(TAG, "onActivityResult");
             mFilterMap = (HashMap<String, Object>) data.getExtras().getSerializable("filterMap");

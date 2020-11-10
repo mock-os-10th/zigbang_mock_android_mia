@@ -34,7 +34,8 @@ public class ApartActivity extends BaseActivity {
     public void apartOnClick(View view) {
         switch (view.getId()) {
             case R.id.apart_rel_first:
-                Intent intent = new Intent(this, FindMapActivity.class);
+                Intent intent = new Intent(this, ApartMapActivity.class);
+//                Intent intent = new Intent(this, FindMapActivity.class);
                 startActivity(intent);
                 break;
             case R.id.apart_rel_second:

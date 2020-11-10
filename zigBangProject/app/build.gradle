@@ -67,5 +67,16 @@ dependencies {
     // glide
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+
+    // naver map
+//    implementation 'com.naver.maps:map-sdk:3.10.1'
+//    implementation 'gun0912.ted:tedclustering-naver:1.0.2'
+//    implementation 'gun0912.ted:tedclustering-naver:x.y.z'
+    implementation 'com.google.android.gms:play-services-location:17.1.0'
+    implementation 'com.google.android.gms:play-services-maps:17.0.0'
+    implementation 'com.google.maps.android:android-maps-utils:0.5'
+
+
+
 }
 apply plugin: 'com.google.gms.google-services'

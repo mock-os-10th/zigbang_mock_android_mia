@@ -26,7 +26,7 @@ public class FilterActivity extends BaseActivity {
 
     private String sellType = "A";
     private int acreage = 0;
-    private int enterAt = 0;
+    private int enterAt = 100;
     private int liveNum = 0;
 
     @Override
@@ -150,7 +150,7 @@ public class FilterActivity extends BaseActivity {
             switch (checkedId) {
                 case R.id.filter_radio_date_all:
                     tvSelectDate.setText("전체");
-                    enterAt = 0;
+                    enterAt = 100;
                     break;
                 case R.id.filter_date_5_years:
                     tvSelectDate.setText("5년 이내");
