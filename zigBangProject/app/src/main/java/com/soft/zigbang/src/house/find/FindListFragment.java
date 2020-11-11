@@ -12,9 +12,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.soft.zigbang.R;
+import com.soft.zigbang.src.house.apart.ApartMapActivity;
 import com.soft.zigbang.src.house.find.interfaces.FindOnItemClickListener;
 import com.soft.zigbang.src.house.find.models.FindResponse;
 
@@ -26,7 +28,7 @@ import java.util.List;
 public class FindListFragment extends Fragment implements FindOnItemClickListener {
 
     private ArrayList<FindResponse.Result> mFindList;
-    private FindMapActivity mParentActivity;
+    private ApartMapActivity mParentActivity;
 
     public static FindListFragment newInstance(List<FindResponse.Result> findList) {
         FindListFragment fragment = new FindListFragment();
@@ -44,7 +46,7 @@ public class FindListFragment extends Fragment implements FindOnItemClickListene
             mFindList.toString();
         }
 
-        mParentActivity = (FindMapActivity) getActivity();
+        mParentActivity = (ApartMapActivity) getActivity();
     }
 
     @Override
@@ -62,12 +64,14 @@ public class FindListFragment extends Fragment implements FindOnItemClickListene
         adapter.setFindOnItemClickListener(this);
         findListRv.setAdapter(adapter);
 
+        ImageView imageView = view.findViewById(R.id.find_image);
         TextView findListTvCancel = view.findViewById(R.id.find_list_tv_cancel);
         EditText findListEditSearch = view.findViewById(R.id.find_list_edit_search);
+
         findListEditSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
+                imageView.setVisibility(View.GONE);
             }
 
             @Override

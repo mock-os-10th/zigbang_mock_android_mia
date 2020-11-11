@@ -1,6 +1,7 @@
 package com.soft.zigbang.src.house.find.interfaces;
 
 import com.soft.zigbang.src.house.find.models.FindResponse;
+import com.soft.zigbang.src.house.find.models.FindResponse2;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -21,4 +22,5 @@ public interface FindMapRetrofitInterface {
 
     @GET("/apart/{apartIndex}")
     Call<FindResponse> getApart(@Path("apartIndex") int apartIndex);
+    //    Call<FindResponse2> getApart(@Path("apartIndex") int apartIndex);
 }

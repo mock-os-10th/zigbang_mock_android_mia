@@ -38,9 +38,10 @@ public class FindDetailActivity extends BaseActivity implements FindDetailActivi
             mSellValue, mMonthValue, mDongRank, mDongCnt, mGuRank, mGuCnt, mAddress;
 
     private ImageView mFindDetailIvApart;
-    private LinearLayout mLikeLayout;
+    private LinearLayout mLikeLayout, mLinearType;
     private RecyclerView rvSchoolList;
     private FindDetailService mFindDetailService;
+    private boolean isShow = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,15 +55,18 @@ public class FindDetailActivity extends BaseActivity implements FindDetailActivi
         mFindDetailIvApart = findViewById(R.id.find_detail_iv_apart);
         mFindDetailService = new FindDetailService(this);
 
-//        int apartIndex = getIntent().getIntExtra("apartIndex", 0);
         Bundle args = getIntent().getExtras();
         if (args != null) {
             ArrayList<FindResponse.Result> list = (ArrayList<FindResponse.Result>) args.getSerializable("apartList");
-//            mSchools = (ArrayList<FindResponse.School>) args.getSerializable("schools");
+            mSchools = (ArrayList<FindResponse.School>) args.getSerializable("schools");
             mApart = list.get(0);
         }
-//        FindDetailSchoolAdapter adapter = new FindDetailSchoolAdapter(mSchools);
-//        rvSchoolList.setAdapter(adapter);
+
+        FindDetailSchoolAdapter adapter;
+        if(mSchools != null && mSchools.size() > 0) {
+            adapter = new FindDetailSchoolAdapter(mSchools);
+            rvSchoolList.setAdapter(adapter);
+        }
 
         mApartName = findViewById(R.id.detail_apart_name);
         mApartSubName = findViewById(R.id.detail_apart_name_sub);
@@ -77,12 +81,16 @@ public class FindDetailActivity extends BaseActivity implements FindDetailActivi
         mGuCnt = findViewById(R.id.find_detail_tv_gu_cnt);
         mAddress = findViewById(R.id.find_detail_tv_address);
         mLikeLayout = findViewById(R.id.find_detail_linear_like);
+        mLinearType = findViewById(R.id.linear_type);
 
         settingMapView();
 
-        Glide.with(FindDetailActivity.this)
-                .load(Uri.parse(mApart.getImage()))
-                .into(mFindDetailIvApart);
+        if(mApart.getImage() != null && mApart.getImage() != "") {
+            Glide.with(FindDetailActivity.this)
+                    .load(Uri.parse(mApart.getImage()))
+                    .into(mFindDetailIvApart);
+        }
+
 
         mApartName.setText(mApart.getName());
         mApartSubName.setText(getDate(mApart.getEnterAt()) + " 입주 · " + mApart.getLiveNum() + "세대");
@@ -96,8 +104,6 @@ public class FindDetailActivity extends BaseActivity implements FindDetailActivi
         mGuRank.setText(mApart.getSi() + " " + mApart.getGu() + " " + mApart.getGuRank() + "위");
         mGuCnt.setText("총 " + mApart.getGuNum() + "단지 중");
         mAddress.setText(mApart.getAddress());
-//        showProgressDialog();
-//        findDetailService.getApart(apartIndex);
 
     }
 
@@ -111,6 +117,15 @@ public class FindDetailActivity extends BaseActivity implements FindDetailActivi
             case R.id.detail_tv_apart_like:
                 showProgressDialog();
                 mFindDetailService.patchApartLike(mApart.getApartIndex());
+                break;
+            case R.id.find_detail_rel_type_info:
+                if(isShow) {
+                    isShow = false;
+                    mLinearType.setVisibility(View.GONE);
+                } else {
+                    isShow = true;
+                    mLinearType.setVisibility(View.VISIBLE);
+                }
                 break;
         }
     }

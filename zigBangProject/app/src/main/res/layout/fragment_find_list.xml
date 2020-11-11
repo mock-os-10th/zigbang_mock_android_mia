@@ -26,9 +26,11 @@
             android:layout_centerVertical="true"
             android:layout_marginHorizontal="10dp"
             android:layout_toLeftOf="@id/find_list_tv_cancel"
+            android:theme="@style/Theme.ZigBangProject"
             android:layout_toRightOf="@+id/find_iv_back"
             android:background="@drawable/search_back"
             android:gravity="center"
+            android:singleLine="true"
             android:onClick="findOnClick"
             android:hint="아파트, 지역, 지하철역, 학교 검색"
             android:textSize="13sp" />
@@ -50,11 +52,18 @@
         android:layout_height="1dp"
         android:layout_below="@+id/find_search_relative"
         android:background="#eeeeee" />
+    <ImageView
+        android:id="@+id/find_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="100dp"
+        android:src="@drawable/search_list" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/find_list_rv"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
 
 
 </LinearLayout>

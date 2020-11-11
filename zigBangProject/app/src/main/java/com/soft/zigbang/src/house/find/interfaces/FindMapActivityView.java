@@ -13,6 +13,7 @@ public interface FindMapActivityView {
     void getApartSuccess(List<FindResponse.Result> apartList);
     void getApartFailure(String message);
 
+
     // 아파트 검색 조회
     void getSearchApartSuccess(List<FindResponse.Result> apartList);
     void getSearchApartFailure(String message);

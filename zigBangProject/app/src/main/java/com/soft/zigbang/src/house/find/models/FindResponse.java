@@ -15,8 +15,8 @@ public class FindResponse implements Serializable {
     private String mMessage;
     @SerializedName("result")
     private List<FindResponse.Result> mResult;
-//    @SerializedName("school")
-//    private List<FindResponse.School> mSchool;
+    @SerializedName("school")
+    private List<FindResponse.School> mSchool;
 
     public Long getCode() {
         return mCode;
@@ -50,13 +50,13 @@ public class FindResponse implements Serializable {
         mResult = result;
     }
 
-//    public List<FindResponse.School> getSchool() {
-//        return mSchool;
-//    }
-//
-//    public void setSchool(List<FindResponse.School> school) {
-//        mSchool = school;
-//    }
+    public List<FindResponse.School> getSchool() {
+        return mSchool;
+    }
+
+    public void setSchool(List<FindResponse.School> school) {
+        mSchool = school;
+    }
 
     public static class Result implements Serializable {
 
@@ -103,17 +103,37 @@ public class FindResponse implements Serializable {
         private String mDongRank;
         @SerializedName("isLike")
         private String mIsLike;
+        @SerializedName("minPrice")
+        private int mMinPrice;
+        @SerializedName("maxPrice")
+        private int mMaxPrice;
 
-        @SerializedName("school")
-        private List<School> mSchool;
-
-        public List<School> getSchool() {
-            return mSchool;
+        public int getMinPrice() {
+            return mMinPrice;
         }
 
-        public void setSchool(List<School> school) {
-            mSchool = school;
+        public void setMinPrice(int minPrice) {
+            this.mMinPrice = minPrice;
         }
+
+        public int getMaxPrice() {
+            return mMaxPrice;
+        }
+
+        public void setMaxPrice(int maxPrice) {
+            this.mMaxPrice = maxPrice;
+        }
+
+        //        @SerializedName("school")
+//        private List<School> mSchool;
+//
+//        public List<School> getSchool() {
+//            return mSchool;
+//        }
+//
+//        public void setSchool(List<School> school) {
+//            mSchool = school;
+//        }
 
         public int getApartIndex() {
             return mApartIndex;

@@ -150,12 +150,15 @@
                 android:text="마을 자체가 6년? 어쨌든 10년이내로 조성 되어 깔끔하며, 치안에 대한 불안이 없음."
                 android:textSize="16sp" />
 
+
+
             <RelativeLayout
                 android:id="@+id/find_detail_rel_type_info"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:background="@color/white"
+                android:onClick="findDetailOnClick"
+                android:background="@drawable/click"
                 android:padding="12dp">
 
                 <TextView
@@ -175,6 +178,12 @@
                     android:src="@drawable/arrow_up" />
             </RelativeLayout>
 
+            <!-- 추가 -->
+            <LinearLayout
+                android:id="@+id/linear_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -448,6 +457,7 @@
                     android:textSize="16sp"
                     android:textStyle="bold" />
             </RelativeLayout>
+        </LinearLayout>
 
             <RelativeLayout
                 android:id="@+id/find_detail_rel_realEstate"

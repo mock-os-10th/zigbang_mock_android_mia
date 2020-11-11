@@ -11,6 +11,7 @@ public class MyItem implements ClusterItem {
     private String mApartName;
     private int mMinPrice;
     private int mMaxPrice;
+    private int mApartIndex;
 
 //    public MyItem(double lat, double lng, String title, String snippet) {
 //        this.mPosition = new LatLng(lat, lng);
@@ -18,11 +19,12 @@ public class MyItem implements ClusterItem {
 //        this.mSnippet = snippet;
 //    }
 
-    public MyItem(double lat, double lng, String apartName, int minPrice, int maxPrice) {
+    public MyItem(double lat, double lng, String apartName, int minPrice, int maxPrice, int apartIndex) {
         this.mPosition = new LatLng(lat, lng);
         this.mApartName = apartName;
         this.mMinPrice = minPrice;
         this.mMaxPrice = maxPrice;
+        this.mApartIndex = apartIndex;
         this.mTitle = "title";
         this.mSnippet = "snippet";
     }
@@ -56,4 +58,7 @@ public class MyItem implements ClusterItem {
         return mMaxPrice;
     }
 
+    public int getApartIndex() {
+        return mApartIndex;
+    }
 }
