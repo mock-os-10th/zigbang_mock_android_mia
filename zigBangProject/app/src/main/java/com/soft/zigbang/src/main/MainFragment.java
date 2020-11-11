@@ -3,8 +3,10 @@ package com.soft.zigbang.src.main;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,14 +16,22 @@ import android.widget.Toast;
 import com.soft.zigbang.R;
 import com.soft.zigbang.src.house.apart.ApartActivity;
 import com.soft.zigbang.src.house.oneroom.OneRoomActivity;
+import com.soft.zigbang.src.main.interfaces.MainFragmentView;
+import com.soft.zigbang.src.main.models.ApartInfoResponse;
+
+import java.util.List;
 
 
 public class MainFragment extends Fragment implements View.OnClickListener {
 
+    private MainService mMainService;
+    private MainActivity parentActivity;
+    private List<ApartInfoResponse.Result> results;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
+        Log.d("MainFragment", "onCreateView");
         View view = inflater.inflate(R.layout.fragment_main, container, false);
         RelativeLayout apartLayout = view.findViewById(R.id.apart_layout);
         RelativeLayout oneRoomLayout = view.findViewById(R.id.one_room_layout);

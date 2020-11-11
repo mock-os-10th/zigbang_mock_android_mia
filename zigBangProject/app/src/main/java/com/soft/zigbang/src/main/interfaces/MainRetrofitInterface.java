@@ -1,5 +1,6 @@
 package com.soft.zigbang.src.main.interfaces;
 
+import com.soft.zigbang.src.main.models.ApartInfoResponse;
 import com.soft.zigbang.src.main.models.DefaultResponse;
 
 import okhttp3.RequestBody;
@@ -11,7 +12,6 @@ import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface MainRetrofitInterface {
-//    @GET("/test")
     @GET("/jwt")
     Call<DefaultResponse> getTest();
 
@@ -23,4 +23,7 @@ public interface MainRetrofitInterface {
 
     @POST("/test")
     Call<DefaultResponse> postTest(@Body RequestBody params);
+
+    @GET("/apartinfo")
+    Call<ApartInfoResponse> getApartInfo();
 }

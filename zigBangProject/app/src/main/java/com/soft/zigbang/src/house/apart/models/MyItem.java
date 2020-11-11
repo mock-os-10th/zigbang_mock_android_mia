@@ -1,4 +1,4 @@
-package com.soft.zigbang.src.house.apart;
+package com.soft.zigbang.src.house.apart.models;
 
 import com.google.android.gms.maps.model.LatLng;
 import com.google.maps.android.clustering.ClusterItem;
@@ -6,10 +6,12 @@ import com.google.maps.android.clustering.ClusterItem;
 public class MyItem implements ClusterItem {
     private final LatLng mPosition;
     private final String mTitle;
+    private final String mSnippet;
 
-    public MyItem(double lat, double lng, String mTitle) {
+    public MyItem(double lat, double lng, String title, String snippet) {
         this.mPosition = new LatLng(lat, lng);
-        this.mTitle = mTitle;
+        this.mTitle = title;
+        this.mSnippet = snippet;
     }
 
     @Override
@@ -19,11 +21,11 @@ public class MyItem implements ClusterItem {
 
     @Override
     public String getTitle() {
-        return null;
+        return mTitle;
     }
 
     @Override
     public String getSnippet() {
-        return null;
+        return mSnippet;
     }
 }
