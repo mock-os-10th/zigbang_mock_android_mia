@@ -53,7 +53,7 @@ public class FindMapService {
                     mFindMapActivityView.getApartFailure(null);
                     return;
                 }
-                mFindMapActivityView.getApartSuccess(findResponse.getResult(), findResponse.getSchool());
+                mFindMapActivityView.getApartSuccess(findResponse.getResult());
             }
 
             @Override

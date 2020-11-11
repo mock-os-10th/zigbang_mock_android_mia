@@ -58,11 +58,11 @@ public class FindDetailActivity extends BaseActivity implements FindDetailActivi
         Bundle args = getIntent().getExtras();
         if (args != null) {
             ArrayList<FindResponse.Result> list = (ArrayList<FindResponse.Result>) args.getSerializable("apartList");
-            mSchools = (ArrayList<FindResponse.School>) args.getSerializable("schools");
+//            mSchools = (ArrayList<FindResponse.School>) args.getSerializable("schools");
             mApart = list.get(0);
         }
-        FindDetailSchoolAdapter adapter = new FindDetailSchoolAdapter(mSchools);
-        rvSchoolList.setAdapter(adapter);
+//        FindDetailSchoolAdapter adapter = new FindDetailSchoolAdapter(mSchools);
+//        rvSchoolList.setAdapter(adapter);
 
         mApartName = findViewById(R.id.detail_apart_name);
         mApartSubName = findViewById(R.id.detail_apart_name_sub);

@@ -2,11 +2,13 @@ package com.soft.zigbang.src.house.apart;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.util.Log;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 
@@ -18,6 +20,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.maps.android.clustering.Cluster;
@@ -32,20 +35,14 @@ import com.soft.zigbang.src.house.apart.models.MyItem;
 import java.util.ArrayList;
 
 public class ApartMapActivity extends BaseActivity implements OnMapReadyCallback {
-    GoogleMap mgoogleMap;
+    GoogleMap mGoogleMap;
     ClusterManager clusterManager;
-//    private NaverMap naverMap;
-//    private Vector<LatLng> markersPosition;
-//    private Vector<Marker> activeMarkers;
-//    public final static double REFERANCE_LAT = 1 / 109.958489129649955;
-//    public final static double REFERANCE_LNG = 1 / 88.74;
-//    public final static double REFERANCE_LAT_X3 = 3 / 109.958489129649955;
-//    public final static double REFERANCE_LNG_X3 = 3 / 88.74;
-//    public boolean withinSightMarker(LatLng currentPosition, LatLng markerPosition) {
-//        boolean withinSightMarkerLat = Math.abs(currentPosition.latitude - markerPosition.latitude) <= REFERANCE_LAT_X3;
-//        boolean withinSightMarkerLng = Math.abs(currentPosition.longitude - markerPosition.longitude) <= REFERANCE_LNG_X3;
-//        return withinSightMarkerLat && withinSightMarkerLng;
-//    }
+    View markerView;
+
+    private void setCustomMarkerView() {
+        markerView = getLayoutInflater().inflate(R.layout.info_window, null);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,15 +51,18 @@ public class ApartMapActivity extends BaseActivity implements OnMapReadyCallback
         FragmentManager fm = getSupportFragmentManager();
         SupportMapFragment mapFragment = (SupportMapFragment) fm.findFragmentById(R.id.map);
 
+        setCustomMarkerView();
         mapFragment.getMapAsync(this);
+
     }
 
     @Override
     public void onMapReady(GoogleMap map) {
-        mgoogleMap = map;
-        clusterManager = new ClusterManager<MyItem>(getApplicationContext(), mgoogleMap);
+        mGoogleMap = map;
+        clusterManager = new ClusterManager<MyItem>(getApplicationContext(), mGoogleMap);
         ArrayList<Double> latList = new ArrayList<>();
         ArrayList<Double> lntList = new ArrayList<>();
+        ArrayList<String> nameList = new ArrayList<>();
         latList.add(37.5274819);
         latList.add(37.49419489574496);
         latList.add(37.4828021050624);
@@ -77,32 +77,46 @@ public class ApartMapActivity extends BaseActivity implements OnMapReadyCallback
         lntList.add(126.88342717602305);
         lntList.add(126.88791433089162);
 
-        mgoogleMap.setOnMapLoadedCallback(new GoogleMap.OnMapLoadedCallback() {
+        nameList.add("A");
+        nameList.add("B");
+        nameList.add("C");
+        nameList.add("D");
+        nameList.add("E");
+        nameList.add("F");
+
+        mGoogleMap.setOnMapLoadedCallback(new GoogleMap.OnMapLoadedCallback() {
             @Override
             public void onMapLoaded() {
                 LatLng latLng = new LatLng(37.49649605358077, 127.04046157504413);
-                mgoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
+                mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
             }
         });
 
-        clusterManager.setRenderer(new CustomIconRenderer(getApplicationContext(), mgoogleMap, clusterManager));
-        for(int i = 0; i < latList.size(); i++) {
-            MyItem myItem = new MyItem(latList.get(i), lntList.get(i), "A", "B");
+        clusterManager.setRenderer(new CustomIconRenderer(getApplicationContext(), mGoogleMap, clusterManager));
+        for (int i = 0; i < latList.size(); i++) {
+            MyItem myItem = new MyItem(latList.get(i), lntList.get(i), "아파트", 1, 2);
             clusterManager.addItem(myItem);
         }
-        mgoogleMap.setInfoWindowAdapter(clusterManager.getMarkerManager());
+
+        mGoogleMap.setInfoWindowAdapter(null);
         clusterManager.getMarkerCollection().setOnInfoWindowAdapter(new ItemAdapter(LayoutInflater.from(this)));
 
-        mgoogleMap.setOnCameraIdleListener(clusterManager);
-        mgoogleMap.setOnMarkerClickListener(clusterManager);
+        mGoogleMap.setOnCameraIdleListener(clusterManager);
+        mGoogleMap.setOnMarkerClickListener(clusterManager);
 
-        mgoogleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+        mGoogleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng latLng) {
                 showCustomToast("aaaa");
             }
         });
-
+        mGoogleMap.setOnCameraMoveListener(new GoogleMap.OnCameraMoveListener() {
+            @Override
+            public void onCameraMove() {
+                LatLngBounds bounds = mGoogleMap.getProjection().getVisibleRegion().latLngBounds;
+                bounds.getCenter();
+            }
+        });
 //        clusterManager.setOnClusterClickListener(new ClusterManager.OnClusterClickListener() {
 //            @Override
 //            public boolean onClusterClick(Cluster cluster) {
@@ -114,20 +128,78 @@ public class ApartMapActivity extends BaseActivity implements OnMapReadyCallback
         clusterManager.setOnClusterItemClickListener(new ClusterManager.OnClusterItemClickListener() {
             @Override
             public boolean onClusterItemClick(ClusterItem clusterItem) {
+
                 showCustomToast("cluster item");
 
                 return false;
             }
         });
-        mgoogleMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
-            @Override
-            public void onInfoWindowClick(Marker marker) {
-                showCustomToast("info");
-                Log.d("ApartMap", "setOnInfoWindowClickListener");
+    }
 
+    class CustomIconRenderer extends DefaultClusterRenderer<MyItem> {
+        private final IconGenerator iconGenerator;
+        Context mContext;
+
+        public CustomIconRenderer(Context context, GoogleMap map, ClusterManager<MyItem> clusterManager) {
+            super(context, map, clusterManager);
+            iconGenerator = new IconGenerator(context);
+            mContext = context;
+        }
+
+        @Override
+        protected void onBeforeClusterItemRendered(MyItem item, MarkerOptions markerOptions) {
+//            Bitmap bm =iconGenerator.makeIcon("1"); //
+//            markerOptions.icon(BitmapDescriptorFactory.fromBitmap(bm)); // 여기까지 원룸
+            TextView tvApartName = markerView.findViewById(R.id.tv_apart_name);
+            TextView tvApartPriceMin = markerView.findViewById(R.id.tv_apart_price_min);
+            TextView tvApartPriceMax = markerView.findViewById(R.id.tv_apart_price_max);
+
+            tvApartPriceMin.setText(item.getMaxPrice() + "천만");
+            tvApartPriceMax.setText("~" + item.getMaxPrice() + "천만");
+            tvApartName.setText(item.getApartName());
+
+            markerOptions.icon(BitmapDescriptorFactory.fromBitmap(createDrawableFromView(mContext, markerView)));
+            markerOptions.snippet(item.getSnippet());
+            markerOptions.title(item.getTitle());
+            super.onBeforeClusterItemRendered(item, markerOptions);
+        }
+
+        @Override
+        protected void onClusterRendered(Cluster<MyItem> cluster, Marker marker) {
+        }
+
+        @Override
+        protected void onBeforeClusterRendered(Cluster<MyItem> cluster, MarkerOptions markerOptions) {
+
+            final Drawable clusterIcon = mContext.getDrawable(R.drawable.cluster_marker);
+            iconGenerator.setBackground(clusterIcon);
+            iconGenerator.setTextAppearance(com.google.maps.android.R.style.amu_ClusterIcon_TextAppearance);
+
+            if (cluster.getSize() < 10) {
+                iconGenerator.setContentPadding(80, 60, 80, 60);
+            } else {
+                iconGenerator.setContentPadding(30, 20, 0, 0);
             }
-        });
 
+            Bitmap icon = iconGenerator.makeIcon(String.valueOf(cluster.getSize()));
+            markerOptions.icon(BitmapDescriptorFactory.fromBitmap(icon));
+        }
+
+        private Bitmap createDrawableFromView(Context context, View view) {
+
+            DisplayMetrics displayMetrics = new DisplayMetrics();
+            getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+            view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+            view.measure(displayMetrics.widthPixels, displayMetrics.heightPixels);
+            view.layout(0, 0, displayMetrics.widthPixels, displayMetrics.heightPixels);
+            view.buildDrawingCache();
+            Bitmap bitmap = Bitmap.createBitmap(view.getMeasuredWidth(), view.getMeasuredHeight(), Bitmap.Config.ARGB_8888);
+
+            Canvas canvas = new Canvas(bitmap);
+            view.draw(canvas);
+
+            return bitmap;
+        }
     }
 
     class ItemAdapter implements GoogleMap.InfoWindowAdapter {
@@ -140,97 +212,19 @@ public class ApartMapActivity extends BaseActivity implements OnMapReadyCallback
 
         @Override
         public View getInfoWindow(Marker marker) {
-            final View popup = mInflater.inflate(R.layout.info_window, null);
-
-            TextView title = (TextView) popup.findViewById(R.id.info_title);
-            title.setText(marker.getTitle());
-
-            TextView snippet = (TextView) popup.findViewById(R.id.info_snippet);
-            snippet.setText(marker.getSnippet());
-
-            return popup;
+            return null;
         }
 
         @Override
         public View getInfoContents(Marker marker) {
-            final View popup = mInflater.inflate(R.layout.info_window, null);
 
-            TextView title = (TextView) popup.findViewById(R.id.info_title);
-            title.setText(marker.getTitle());
-
-            TextView snippet = (TextView) popup.findViewById(R.id.info_snippet);
-            snippet.setText(marker.getSnippet());
-
-            return popup;
-        }
-    }
-
-    class CustomIconRenderer extends DefaultClusterRenderer<MyItem> {
-        private final IconGenerator iconGenerator;
-        Context mContext;
-        public CustomIconRenderer(Context context, GoogleMap map, ClusterManager<MyItem> clusterManager) {
-            super(context, map, clusterManager);
-            iconGenerator = new IconGenerator(context);
-            mContext = context;
-        }
-
-        @Override
-        protected void onBeforeClusterItemRendered(MyItem item, MarkerOptions markerOptions) {
-            markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_2));
-            markerOptions.snippet(item.getSnippet());
-            markerOptions.title(item.getTitle());
-//            super.onBeforeClusterItemRendered(item, markerOptions);
-        }
-
-        @Override
-        protected void onClusterItemRendered(MyItem clusterItem, Marker marker) {
-//            marker.showInfoWindow();
-        }
-
-        @Override
-        protected void onBeforeClusterRendered(Cluster<MyItem> cluster, MarkerOptions markerOptions) {
-            final Drawable clusterIcon = mContext.getDrawable(R.drawable.cluster_marker);
-            iconGenerator.setBackground(clusterIcon);
-            iconGenerator.setTextAppearance(com.google.maps.android.R.style.amu_ClusterIcon_TextAppearance);
-
-            if (cluster.getSize() < 10) {
-                iconGenerator.setContentPadding(80, 60, 80, 60);
-            }
-            else {
-                iconGenerator.setContentPadding(30, 20, 0, 0);
-            }
-
-            Bitmap icon = iconGenerator.makeIcon(String.valueOf(cluster.getSize()));
-            markerOptions.icon(BitmapDescriptorFactory.fromBitmap(icon));
+            return null;
         }
     }
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        //    private void freeActiveMarkers() {
+//    private void freeActiveMarkers() {
 //        if (activeMarkers == null) {
 //            activeMarkers = new Vector<Marker>();
 //            return;
@@ -311,7 +305,7 @@ public class ApartMapActivity extends BaseActivity implements OnMapReadyCallback
 //                .make();
 //    }
 
-    // 현재 카메라가 보고있는 위치
+// 현재 카메라가 보고있는 위치
 //    public LatLng getCurrentPosition(NaverMap naverMap) {
 //        CameraPosition cameraPosition = naverMap.getCameraPosition();
 //        return new LatLng(cameraPosition.target.latitude, cameraPosition.target.longitude);
