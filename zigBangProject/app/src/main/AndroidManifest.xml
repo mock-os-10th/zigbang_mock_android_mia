@@ -24,21 +24,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".src.house.oneroom.OneRoomMapActivity"></activity>
         <activity android:name=".src.house.apart.ApartMapActivity">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
         <activity android:name=".src.house.oneroom.OneRoomActivity" />
         <activity android:name=".src.house.apart.ApartActivity" />
         <activity android:name=".src.house.find.detail.FindDetailActivity">
-<!--             <intent-filter>-->
-<!--             <action android:name="android.intent.action.MAIN" />-->
+
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
 
 
-<!--             <category android:name="android.intent.category.LAUNCHER" />-->
-<!--             </intent-filter>-->
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
         <activity android:name=".src.house.find.FilterActivity">
 
@@ -83,18 +86,13 @@
 
             <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
             <!-- </intent-filter> -->
-        </activity>
-
-        <!-- kakao -->
+        </activity> <!-- kakao -->
         <meta-data
             android:name="com.kakao.sdk.AppKey"
-            android:value="eb088b5eeeaf8d2e874c2ef58f39cd62" />
-
-        <!-- naver -->
+            android:value="eb088b5eeeaf8d2e874c2ef58f39cd62" /> <!-- naver -->
         <meta-data
             android:name="com.naver.maps.map.CLIENT_ID"
             android:value="yl5fddc8zk" />
-
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDCc5UCDVV-VM8_9tU8CKVPM2UkvQaD_4w" />

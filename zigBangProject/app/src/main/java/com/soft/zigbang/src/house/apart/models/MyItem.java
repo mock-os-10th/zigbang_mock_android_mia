@@ -19,6 +19,11 @@ public class MyItem implements ClusterItem {
 //        this.mSnippet = snippet;
 //    }
 
+    public MyItem(double lat, double lng) {
+        this.mPosition = new LatLng(lat, lng);
+        this.mTitle = "title";
+        this.mSnippet = "snippet";
+    }
     public MyItem(double lat, double lng, String apartName, int minPrice, int maxPrice, int apartIndex) {
         this.mPosition = new LatLng(lat, lng);
         this.mApartName = apartName;

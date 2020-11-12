@@ -19,6 +19,9 @@ public class OneRoomActivity extends AppCompatActivity {
 
     public void oneRoomOnClick(View view) {
         switch (view.getId()) {
+            case R.id.one_room_rel_first:
+                startActivity(new Intent(this, OneRoomMapActivity.class));
+                break;
             case R.id.one_room_rel_sell:
                 Intent intent = new Intent(this, SellHouseActivity.class);
                 startActivity(intent);

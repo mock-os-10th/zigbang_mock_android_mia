@@ -84,6 +84,9 @@ public class ApartMapActivity extends BaseActivity implements OnMapReadyCallback
 
         mFindMapService = new FindMapService(this);
 
+        FragmentManager fm = getSupportFragmentManager();
+        mapFragment = (SupportMapFragment) fm.findFragmentById(R.id.map_view);
+        markerView = getLayoutInflater().inflate(R.layout.info_window, null);
         mFindRelApart = findViewById(R.id.find_rel_apart);
         mFindTvApartName = findViewById(R.id.find_tv_apart_name);
         mFindTvApartAddress = findViewById(R.id.find_tv_apart_address);
@@ -91,10 +94,6 @@ public class ApartMapActivity extends BaseActivity implements OnMapReadyCallback
         mFindTvType = findViewById(R.id.find_tv_type);
         mFindIvApart = findViewById(R.id.find_iv_apart);
 
-        FragmentManager fm = getSupportFragmentManager();
-        mapFragment = (SupportMapFragment) fm.findFragmentById(R.id.map_view);
-
-        markerView = getLayoutInflater().inflate(R.layout.info_window, null);
 //        mapFragment.getMapAsync(this);
 
     }
@@ -137,12 +136,12 @@ public class ApartMapActivity extends BaseActivity implements OnMapReadyCallback
             MyItem myItem = new MyItem(apart.getLatitude(), apart.getLongitude(), apart.getName(), apart.getMinPrice(), apart.getMaxPrice(), apart.getApartIndex());
             clusterManager.addItem(myItem);
         }
-//
-        mGoogleMap.setInfoWindowAdapter(null);
-        clusterManager.getMarkerCollection().setOnInfoWindowAdapter(new ItemAdapter(LayoutInflater.from(this)));
 
+        mGoogleMap.setInfoWindowAdapter(clusterManager.getMarkerManager());
+        clusterManager.getMarkerCollection().setOnInfoWindowAdapter(new ItemAdapter(LayoutInflater.from(this)));
         mGoogleMap.setOnCameraIdleListener(clusterManager);
         mGoogleMap.setOnMarkerClickListener(clusterManager);
+
 
         mGoogleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
@@ -201,7 +200,6 @@ public class ApartMapActivity extends BaseActivity implements OnMapReadyCallback
                 FindResponse.Result apart = markerList.get(arrayIdx);
                 TranslateAnimation animate;
 
-                TextView mFindTvApartName = findViewById(R.id.find_tv_apart_name);
                 if(apart.getImage() != null && apart.getImage() != "") {
                     Glide.with(ApartMapActivity.this)
                             .load(Uri.parse(apart.getImage()))
@@ -429,7 +427,8 @@ public class ApartMapActivity extends BaseActivity implements OnMapReadyCallback
 
         @Override
         public View getInfoWindow(Marker marker) {
-            return null;
+            View view = mInflater.inflate(R.layout.no_window, null);
+            return view;
         }
 
         @Override
