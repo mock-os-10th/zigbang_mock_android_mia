@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".src.house.find.detail.review.ReviewActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:background="@color/gray_500"
+        android:paddingHorizontal="50dp"
+        android:paddingVertical="10dp"
+        android:layout_height="250dp" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:background="@color/gray_light">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:background="@drawable/review_grid_back"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/review_btn_post"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/marker"
+        android:text="거주민 리뷰 작성하기"
+        android:onClick="reviewOnClick"
+        android:textColor="@color/white"
+        android:textSize="16dp"
+        android:textStyle="bold" />
+
+</RelativeLayout>

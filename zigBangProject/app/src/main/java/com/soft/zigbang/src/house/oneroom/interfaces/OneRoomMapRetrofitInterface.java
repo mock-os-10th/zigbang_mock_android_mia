@@ -20,4 +20,19 @@ public interface OneRoomMapRetrofitInterface {
                                         @Query("maxLongitude") double maxLongitude,
                                         @Query("minLatitude") double minLatitude,
                                         @Query("maxLatitude") double maxLatitude);
+
+    @GET("/realestate")
+    Call<OneRoomResponse> getOneRooms(@Query("type") String type,
+                                         @Query("how") String how,
+                                         @Query("sellType") String sellType,
+                                         @Query("isFee") String isFee,
+                                         @Query("onlyAll") String onlyAll,
+                                         @Query("struct") String struct,
+                                         @Query("floor") int floor,
+                                         @Query("isPark") String isPark,
+                                         @Query("minLongitude") double minLongitude,
+                                         @Query("maxLongitude") double maxLongitude,
+                                         @Query("minLatitude") double minLatitude,
+                                         @Query("maxLatitude") double maxLatitude,
+                                         @Query("pageNo") int pageNo);
 }

@@ -14,13 +14,17 @@
     <color name="gray_light">#F4F3F3</color>
     <color name="gray">#eeeeee</color>
     <color name="gray_500">#b4b4b4</color>
+    <color name="gray_800">#656363</color>
     <color name="filter_select">#303030</color>
     <color name="find_detail_blue">#394593</color>
-    <color name="marker">#FDAB1F</color>
+
+    <color name="marker">#E6FFA409</color>
 
     <color name="marker_one">#E36037</color>
     <color name="marker_two">#FD6637</color>
     <color name="marker_three">#FF9800</color>
+
+    <color name="aa">#FF5722</color>
 
 
 </resources>

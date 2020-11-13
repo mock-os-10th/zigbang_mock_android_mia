@@ -10,7 +10,7 @@ public interface FindMapActivityView {
     void getApartListFailure(String message);
 
     // 아파트 개별 조회
-    void getApartSuccess(List<FindResponse.Result> apartList);
+    void getApartSuccess(List<FindResponse.Result> apartList, List<FindResponse.School> schools);
     void getApartFailure(String message);
 
 

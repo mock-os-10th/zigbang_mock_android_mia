@@ -2,6 +2,8 @@ package com.soft.zigbang.src;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +13,7 @@ import com.soft.zigbang.R;
 @SuppressLint("Registered")
 public class BaseActivity extends AppCompatActivity {
     public ProgressDialog mProgressDialog;
+
 
     public void showCustomToast(final String message) {
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
@@ -26,15 +29,30 @@ public class BaseActivity extends AppCompatActivity {
         mProgressDialog.show();
     }
 
+    public void showProgressDialog2(View view) {
+        view.setVisibility(View.VISIBLE);
+    }
+
+    public void hideProgressDialog2(View view) {
+        view.setVisibility(View.INVISIBLE);
+    }
+
+
     public void hideProgressDialog() {
         if (mProgressDialog != null && mProgressDialog.isShowing()) {
             mProgressDialog.dismiss();
         }
     }
 
+
     @Override
     public void onStop() {
         super.onStop();
         hideProgressDialog();
+    }
+
+    public void imageUrl(String fileName) {
+        FirebaseManager manager = new FirebaseManager();
+        manager.getDownloadImageUrl(fileName);
     }
 }

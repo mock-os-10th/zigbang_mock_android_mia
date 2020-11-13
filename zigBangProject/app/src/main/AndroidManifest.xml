@@ -24,7 +24,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".src.house.oneroom.OneRoomMapActivity"></activity>
+        <activity android:name=".src.house.find.detail.review.post.ReviewPostActivity"></activity>
+        <activity android:name=".src.house.find.detail.review.ReviewActivity" />
+        <activity android:name=".src.house.oneroom.list.OneRoomListActivity" />
+        <activity android:name=".src.house.oneroom.OneRoomMapActivity" />
         <activity android:name=".src.house.apart.ApartMapActivity">
 
             <!-- <intent-filter> -->

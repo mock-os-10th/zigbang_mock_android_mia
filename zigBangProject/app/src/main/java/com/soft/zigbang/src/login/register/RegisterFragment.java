@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.soft.zigbang.R;
@@ -35,6 +36,7 @@ public class RegisterFragment extends Fragment implements View.OnClickListener, 
     EditText mEditEmail;
     EditText mEditPassword;
     EditText mEditPasswordCheck;
+    private ProgressBar progressBar;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -45,6 +47,7 @@ public class RegisterFragment extends Fragment implements View.OnClickListener, 
 
         mRegisterService = new RegisterService(this);
         mParentActivity = (LoginActivity) getActivity();
+        progressBar = view.findViewById(R.id.progress_bar);
 
         mEditPassword.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -78,16 +81,16 @@ public class RegisterFragment extends Fragment implements View.OnClickListener, 
         String pw = mEditPassword.getText().toString();
         String pwCheck = mEditPasswordCheck.getText().toString();
         if (!checkValidation(email, pw, pwCheck)) return;
-        mParentActivity.showProgressDialog();
+        mParentActivity.showProgressDialog2(progressBar);
         mRegisterService.postRegister(email, pw);
     }
 
     @Override
     public void signUpSuccess(String text, int code) {
-        mParentActivity.hideProgressDialog();
+        mParentActivity.hideProgressDialog2(progressBar);
         mParentActivity.showCustomToast(text);
 
-        if (code == 101) {
+        if (code == 200) {
             mParentActivity.backFragment(1);
         } else if(code == 201) {
             mParentActivity.showCustomToast(text);
@@ -96,7 +99,7 @@ public class RegisterFragment extends Fragment implements View.OnClickListener, 
 
     @Override
     public void signUpFailure(String message) {
-        mParentActivity.hideProgressDialog();
+        mParentActivity.hideProgressDialog2(progressBar);
         mParentActivity.showCustomToast(message == null || message.isEmpty() ? getString(R.string.network_error) : message);
     }
 
@@ -121,11 +124,6 @@ public class RegisterFragment extends Fragment implements View.OnClickListener, 
             return false;
         }
 
-        if (!pw.equals(pwCheck)) {
-            mParentActivity.showCustomToast(getString(R.string.password_check));
-            return false;
-        }
-
         boolean numeric = false;
         boolean alpha = false;
         for(int i = 0; i < pw.length(); i++) {
@@ -140,6 +138,11 @@ public class RegisterFragment extends Fragment implements View.OnClickListener, 
 
         if(!(numeric && alpha)) {
             mParentActivity.showCustomToast(getString(R.string.password_format));
+            return false;
+        }
+
+        if (!pw.equals(pwCheck)) {
+            mParentActivity.showCustomToast(getString(R.string.password_check));
             return false;
         }
 

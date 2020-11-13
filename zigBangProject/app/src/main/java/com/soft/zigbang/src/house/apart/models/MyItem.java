@@ -9,8 +9,8 @@ public class MyItem implements ClusterItem {
     private final String mSnippet;
 
     private String mApartName;
-    private int mMinPrice;
-    private int mMaxPrice;
+    private double mMinPrice;
+    private double mMaxPrice;
     private int mApartIndex;
 
 //    public MyItem(double lat, double lng, String title, String snippet) {
@@ -24,7 +24,7 @@ public class MyItem implements ClusterItem {
         this.mTitle = "title";
         this.mSnippet = "snippet";
     }
-    public MyItem(double lat, double lng, String apartName, int minPrice, int maxPrice, int apartIndex) {
+    public MyItem(double lat, double lng, String apartName, double minPrice, double maxPrice, int apartIndex) {
         this.mPosition = new LatLng(lat, lng);
         this.mApartName = apartName;
         this.mMinPrice = minPrice;
@@ -54,12 +54,12 @@ public class MyItem implements ClusterItem {
     }
 
 
-    public int getMinPrice() {
+    public double getMinPrice() {
         return mMinPrice;
     }
 
 
-    public int getMaxPrice() {
+    public double getMaxPrice() {
         return mMaxPrice;
     }
 

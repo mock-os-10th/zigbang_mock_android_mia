@@ -91,59 +91,27 @@ public class OneRoomResponse {
         private String mTitle;
         @SerializedName("type")
         private String mType;
+        @SerializedName("image")
+        private String mImage;
 
-//        @SerializedName("minLongitude")
-//        private double mMinLongitude;
-//        @SerializedName("maxLongitude")
-//        private double mMaxLongitude;
-//        @SerializedName("minLatitude")
-//        private double mMinLatitude;
-//        @SerializedName("maxLatitude")
-//        private double mMaxLatitude;
+        public String getImage() {
+            return mImage;
+        }
 
-//        @SerializedName("num")
-//        private int mNum;
-//
-//        public int getNum() {
-//            return mNum;
-//        }
-//
-//        public void setNum(int num) {
-//            mNum = num;
-//        }
+        public void setImage(String image) {
+            this.mImage = image;
+        }
 
-//
-//        public double getMinLongitude() {
-//            return mMinLongitude;
-//        }
-//
-//        public void setMinLongitude(double minLongitude) {
-//            this.mMinLongitude = minLongitude;
-//        }
-//
-//        public double getMaxLongitude() {
-//            return mMaxLongitude;
-//        }
-//
-//        public void setMaxLongitude(double maxLongitude) {
-//            this.mMaxLongitude = maxLongitude;
-//        }
-//
-//        public double getMinLatitude() {
-//            return mMinLatitude;
-//        }
-//
-//        public void setMinLatitude(double minLatitude) {
-//            this.mMinLatitude = minLatitude;
-//        }
-//
-//        public double getMaxLatitude() {
-//            return mMaxLatitude;
-//        }
-//
-//        public void setMaxLatitude(double maxLatitude) {
-//            this.mMaxLatitude = maxLatitude;
-//        }
+        @SerializedName("num")
+        private int mNum;
+
+        public int getNum() {
+            return mNum;
+        }
+
+        public void setNum(int num) {
+            mNum = num;
+        }
 
         public int getAcreage() {
             return mAcreage;

@@ -142,6 +142,8 @@ public class LoginActivity extends BaseActivity implements KaKaoActivityView {
         }
 
         @Override
-        public void onSessionOpenFailed(KakaoException e) { }
+        public void onSessionOpenFailed(KakaoException e) {
+
+        }
     }
 }

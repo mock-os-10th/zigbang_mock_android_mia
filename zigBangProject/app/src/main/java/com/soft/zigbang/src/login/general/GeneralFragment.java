@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.soft.zigbang.R;
@@ -26,7 +27,7 @@ public class GeneralFragment extends Fragment implements View.OnClickListener, G
 
     private GeneralService mGeneralService;
     private LoginActivity mParentActivity;
-
+    private ProgressBar progressBar;
     EditText mEditId;
     EditText mEditPassword;
 
@@ -39,6 +40,7 @@ public class GeneralFragment extends Fragment implements View.OnClickListener, G
 
         mGeneralService = new GeneralService(this);
         mParentActivity = (LoginActivity) getActivity();
+        progressBar = view.findViewById(R.id.progress_bar);
 
         mEditPassword.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -58,17 +60,17 @@ public class GeneralFragment extends Fragment implements View.OnClickListener, G
         String email = mEditId.getText().toString();
         String pw = mEditPassword.getText().toString();
 
-        email = "suy0226@naver.com";
-        pw = "test1234";
+//        email = "suy0226@naver.com";
+//        pw = "test1234";
         if (!checkValidation(email, pw)) return;
 
-        mParentActivity.showProgressDialog();
+        mParentActivity.showProgressDialog2(progressBar);
         mGeneralService.postLogin(email, pw);
     }
 
     @Override
     public void generalLoginSuccess(int pUserNo) {
-        mParentActivity.hideProgressDialog();
+        mParentActivity.hideProgressDialog2(progressBar);
         userNo = pUserNo; // 추후 sSharedPreferences 저장
 
         Intent intent = new Intent(getActivity(), MainActivity.class);
@@ -78,13 +80,13 @@ public class GeneralFragment extends Fragment implements View.OnClickListener, G
 
     @Override
     public void generalLoginFalse(String text) {
-        mParentActivity.hideProgressDialog();
+        mParentActivity.hideProgressDialog2(progressBar);
         mParentActivity.showCustomToast(text);
     }
 
     @Override
     public void generalLoginFailure(String message) {
-        mParentActivity.hideProgressDialog();
+        mParentActivity.hideProgressDialog2(progressBar);
         mParentActivity.showCustomToast(message == null || message.isEmpty() ? getString(R.string.network_error) : message);
     }
 

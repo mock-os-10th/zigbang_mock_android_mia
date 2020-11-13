@@ -33,7 +33,7 @@ public class SplashActivity extends BaseActivity implements SplashActivityView {
                     startActivity(intent);
                     finish();
                 } else {
-                    showProgressDialog();
+//                    showProgressDialog();
                     splashService.getJwt();
                 }
             }

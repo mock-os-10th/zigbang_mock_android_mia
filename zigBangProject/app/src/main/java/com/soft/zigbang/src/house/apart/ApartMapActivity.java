@@ -15,6 +15,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -70,6 +72,7 @@ public class ApartMapActivity extends BaseActivity implements OnMapReadyCallback
     private boolean isShowApart;
     private int orgIndex = 0;
     private int from, to;
+    private ProgressBar progressBar;
 
     private HashMap<String, Object> mFilterMap;
     private List<FindResponse.Result> mApartList = null;
@@ -93,6 +96,7 @@ public class ApartMapActivity extends BaseActivity implements OnMapReadyCallback
         mFindTvApartDate = findViewById(R.id.find_tv_apart_date);
         mFindTvType = findViewById(R.id.find_tv_type);
         mFindIvApart = findViewById(R.id.find_iv_apart);
+        progressBar = findViewById(R.id.progress_bar);
 
 //        mapFragment.getMapAsync(this);
 
@@ -102,7 +106,7 @@ public class ApartMapActivity extends BaseActivity implements OnMapReadyCallback
     protected void onStart() {
         super.onStart();
         mFindRelApart.setVisibility(View.INVISIBLE);
-        showProgressDialog();
+        showProgressDialog2(progressBar);
 
         if (mFilterMap != null && mFilterMap.size() > 0) {
             String sellType = mFilterMap.get("sellType").toString();
@@ -132,10 +136,15 @@ public class ApartMapActivity extends BaseActivity implements OnMapReadyCallback
 
         clusterManager.setRenderer(new CustomIconRenderer(getApplicationContext(), mGoogleMap, clusterManager));
         markerList = (mSearchList != null && mSearchList.size() > 0) ? mSearchList : mApartList;
+
         for (FindResponse.Result apart : markerList) {
             MyItem myItem = new MyItem(apart.getLatitude(), apart.getLongitude(), apart.getName(), apart.getMinPrice(), apart.getMaxPrice(), apart.getApartIndex());
             clusterManager.addItem(myItem);
         }
+//        for (int i = 0; i < markerList.size(); i++) {
+//            MyItem myItem = new MyItem(markerList.get(i).getLatitude(), markerList.get(i).getLongitude(), markerList.get(i).getName(), list1.get(i), list2.get(i), markerList.get(i).getApartIndex());
+//            clusterManager.addItem(myItem);
+//        }
 
         mGoogleMap.setInfoWindowAdapter(clusterManager.getMarkerManager());
         clusterManager.getMarkerCollection().setOnInfoWindowAdapter(new ItemAdapter(LayoutInflater.from(this)));
@@ -230,28 +239,28 @@ public class ApartMapActivity extends BaseActivity implements OnMapReadyCallback
      */
     @Override
     public void getApartListSuccess(String text, List<FindResponse.Result> apartList) {
-        hideProgressDialog();
+        hideProgressDialog2(progressBar);
         mApartList = apartList;
         mapFragment.getMapAsync(this);
     }
 
     @Override
     public void getApartListFailure(String message) {
-        hideProgressDialog();
+        hideProgressDialog2(progressBar);
         showCustomToast(getString(R.string.network_error));
     }
 
     /**
-     * 아파트 개별 조회
+     * 아파트 상세 조회
      */
     @Override
-    public void getApartSuccess(List<FindResponse.Result> apartList) {
-        hideProgressDialog();
+    public void getApartSuccess(List<FindResponse.Result> apartList, List<FindResponse.School> schools) {
+        hideProgressDialog2(progressBar);
         if (apartList != null && apartList.size() > 0) {
             Intent intent = new Intent(this, FindDetailActivity.class);
             Bundle bundle = new Bundle();
             bundle.putSerializable("apartList", (Serializable) apartList);
-//            bundle.putSerializable("schools", (Serializable) schools);
+            bundle.putSerializable("schools", (Serializable) schools);
             intent.putExtras(bundle);
             startActivity(intent);
         } else {
@@ -261,7 +270,7 @@ public class ApartMapActivity extends BaseActivity implements OnMapReadyCallback
 
     @Override
     public void getApartFailure(String message) {
-        hideProgressDialog();
+        hideProgressDialog2(progressBar);
         showCustomToast(message);
     }
 
@@ -281,12 +290,12 @@ public class ApartMapActivity extends BaseActivity implements OnMapReadyCallback
             showCustomToast("해당 조건에 맞는 아파트가 없습니다.");
         }
 
-        hideProgressDialog();
+        hideProgressDialog2(progressBar);
     }
 
     @Override
     public void getSearchApartFailure(String message) {
-        hideProgressDialog();
+        hideProgressDialog2(progressBar);
     }
 
     /**
@@ -313,7 +322,7 @@ public class ApartMapActivity extends BaseActivity implements OnMapReadyCallback
                 startActivityForResult(new Intent(this, FilterActivity.class), 100);
                 break;
             case R.id.find_rel_apart:
-                showProgressDialog();
+                showProgressDialog2(progressBar);
                 mFindMapService.getApart(orgIndex);
                 break;
         }
@@ -369,9 +378,18 @@ public class ApartMapActivity extends BaseActivity implements OnMapReadyCallback
             TextView tvApartName = markerView.findViewById(R.id.tv_apart_name);
             TextView tvApartPriceMin = markerView.findViewById(R.id.tv_apart_price_min);
             TextView tvApartPriceMax = markerView.findViewById(R.id.tv_apart_price_max);
+            LinearLayout linearLayout = markerView.findViewById(R.id.linear_chat);
+            if(item.getMinPrice() < 2) {
+                linearLayout.setBackgroundResource(R.drawable.marker_chat3);
+            } else if(item.getMinPrice() < 4) {
+                linearLayout.setBackgroundResource(R.drawable.marker_chat2);
+            } else {
+                linearLayout.setBackgroundResource(R.drawable.marker_chat);
+            }
 
-            tvApartPriceMin.setText(item.getMinPrice() + "천만");
-            tvApartPriceMax.setText("~" + item.getMaxPrice() + "천만");
+
+            tvApartPriceMin.setText(item.getMinPrice() + "억");
+            tvApartPriceMax.setText("~" + item.getMaxPrice() + "억");
             tvApartName.setText(item.getApartName());
 
             markerOptions.icon(BitmapDescriptorFactory.fromBitmap(createDrawableFromView(mContext, markerView)));
@@ -436,6 +454,5 @@ public class ApartMapActivity extends BaseActivity implements OnMapReadyCallback
             return null;
         }
     }
-
 
 }

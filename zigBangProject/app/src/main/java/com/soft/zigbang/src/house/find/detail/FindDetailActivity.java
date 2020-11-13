@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.view.ViewGroup;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -18,6 +20,7 @@ import com.soft.zigbang.R;
 import com.soft.zigbang.src.BaseActivity;
 import com.soft.zigbang.src.house.find.FindMapActivity;
 import com.soft.zigbang.src.house.find.detail.interfaces.FindDetailActivityView;
+import com.soft.zigbang.src.house.find.detail.review.ReviewActivity;
 import com.soft.zigbang.src.house.find.models.FindResponse;
 
 import net.daum.mf.map.api.MapPOIItem;
@@ -41,6 +44,7 @@ public class FindDetailActivity extends BaseActivity implements FindDetailActivi
     private LinearLayout mLikeLayout, mLinearType;
     private RecyclerView rvSchoolList;
     private FindDetailService mFindDetailService;
+    private RelativeLayout mReviewLayout;
     private boolean isShow = true;
 
     @Override
@@ -73,6 +77,7 @@ public class FindDetailActivity extends BaseActivity implements FindDetailActivi
         mReviewScore = findViewById(R.id.detail_tv_review_score);
         mReviewCnt = findViewById(R.id.find_detail_tv_review_cnt);
         mReviewContent = findViewById(R.id.find_detail_tv_review_cont);
+        mReviewLayout = findViewById(R.id.find_detail_rel_review);
         mSellValue = findViewById(R.id.detail_tv_sell_value);
         mMonthValue = findViewById(R.id.detail_tv_month_value);
         mDongRank = findViewById(R.id.find_detail_tv_dong_rank);
@@ -127,6 +132,12 @@ public class FindDetailActivity extends BaseActivity implements FindDetailActivi
                     mLinearType.setVisibility(View.VISIBLE);
                 }
                 break;
+            case R.id.find_detail_rel_review:
+            case R.id.find_detail_tv_review_cont:
+                Intent intent = new Intent(this, ReviewActivity.class);
+                intent.putExtra("apartIndex", mApart.getApartIndex());
+                startActivity(intent);
+                break;
         }
     }
 
@@ -165,7 +176,8 @@ public class FindDetailActivity extends BaseActivity implements FindDetailActivi
         marker.setItemName(mApart.getName());
         marker.setTag(mApart.getApartIndex());
         marker.setMapPoint(MapPoint.mapPointWithGeoCoord(mApart.getLatitude(), mApart.getLongitude()));
-        marker.setSelectedMarkerType(MapPOIItem.MarkerType.BluePin);
+        marker.setMarkerType(MapPOIItem.MarkerType.CustomImage);
+        marker.setCustomImageResourceId(R.drawable.marker);
         marker.setCustomImageAutoscale(false);
         mMapView.addPOIItem(marker);
     }

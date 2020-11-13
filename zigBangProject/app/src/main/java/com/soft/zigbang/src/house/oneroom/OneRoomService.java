@@ -2,8 +2,6 @@ package com.soft.zigbang.src.house.oneroom;
 
 import com.soft.zigbang.src.house.oneroom.interfaces.OneRoomMapActivityView;
 import com.soft.zigbang.src.house.oneroom.interfaces.OneRoomMapRetrofitInterface;
-import com.soft.zigbang.src.house.oneroom.models.OneRoomCntBody;
-import com.soft.zigbang.src.house.oneroom.models.OneRoomCntResponse;
 import com.soft.zigbang.src.house.oneroom.models.OneRoomResponse;
 
 import retrofit2.Call;
@@ -61,6 +59,29 @@ public class OneRoomService {
                 oneRoomMapActivityView.getOneRoomMapCntFailure(null);
             }
         });
+    }
 
+    public void getOneRooms(String type, String how, String sellType, double minLnt, double maxLnt, double minLat, double maxLat, int pageNo) {
+        final OneRoomMapRetrofitInterface oneRoomMapRetrofitInterface = getRetrofit().create(OneRoomMapRetrofitInterface.class);
+        oneRoomMapRetrofitInterface.getOneRooms("B", "list", "A", "N", "N", "A", -1, "N", minLnt, maxLnt, minLat, maxLat, pageNo).enqueue(new Callback<OneRoomResponse>() {
+            @Override
+            public void onResponse(Call<OneRoomResponse> call, Response<OneRoomResponse> response) {
+                final OneRoomResponse oneRoomResponse = response.body();
+                if(oneRoomResponse == null) {
+                    oneRoomMapActivityView.getOneRoomsFailure(null);
+                    return;
+                }
+                if(oneRoomResponse.getCode() == SUCCESS_CODE) {
+                    oneRoomMapActivityView.getOneRoomsSuccess(oneRoomResponse.getCode(), oneRoomResponse.getResult());
+                } else {
+                    oneRoomMapActivityView.getOneRoomsFailure(null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<OneRoomResponse> call, Throwable t) {
+                oneRoomMapActivityView.getOneRoomsFailure(null);
+            }
+        });
     }
 }

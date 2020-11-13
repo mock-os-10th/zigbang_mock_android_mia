@@ -10,4 +10,7 @@ public interface OneRoomMapActivityView {
 
     void getOneRoomMapCntSuccess(int code, List<OneRoomResponse.Result> results);
     void getOneRoomMapCntFailure(String message);
+
+    void getOneRoomsSuccess(int code, List<OneRoomResponse.Result> results);
+    void getOneRoomsFailure(String message);
 }

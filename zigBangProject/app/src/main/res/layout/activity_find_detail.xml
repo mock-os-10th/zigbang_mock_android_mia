@@ -8,8 +8,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/find_detail_btn_new_info"
-        android:layout_marginBottom="50dp">
+        android:layout_above="@+id/find_detail_btn_new_info">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -29,6 +28,7 @@
                     android:src="@drawable/image_empty" />
 
                 <ImageView
+                    android:visibility="invisible"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
                     android:layout_marginTop="8dp"
@@ -36,6 +36,7 @@
                     android:src="@drawable/unit" />
 
                 <ImageView
+                    android:visibility="invisible"
                     android:id="@+id/detail_iv_like"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
@@ -83,6 +84,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:background="@color/white"
+                android:onClick="findDetailOnClick"
                 android:padding="13dp">
 
                 <TextView
@@ -145,8 +147,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="1dp"
-                android:background="@color/white"
+                android:background="@drawable/click"
                 android:padding="12dp"
+                android:onClick="findDetailOnClick"
                 android:text="마을 자체가 6년? 어쨌든 10년이내로 조성 되어 깔끔하며, 치안에 대한 불안이 없음."
                 android:textSize="16sp" />
 
@@ -860,8 +863,16 @@
                     android:layout_alignParentRight="true"
                     android:padding="5dp"
                     android:src="@drawable/arrow_up" />
-
             </RelativeLayout>
+
+            <TextView
+                android:id="@+id/aa"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_centerVertical="true"
+                android:text="교통 정보가 없습니다."
+                android:gravity="center"
+                android:textSize="16sp" />
 
             <RelativeLayout
                 android:id="@+id/find_detail_rel_apart_info"

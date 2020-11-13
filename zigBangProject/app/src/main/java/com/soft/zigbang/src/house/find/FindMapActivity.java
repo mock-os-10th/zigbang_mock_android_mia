@@ -156,13 +156,13 @@ public class FindMapActivity extends BaseActivity implements FindMapActivityView
      * 아파트 개별 조회
      */
     @Override
-    public void getApartSuccess(List<FindResponse.Result> apartList) {
+    public void getApartSuccess(List<FindResponse.Result> apartList, List<FindResponse.School> schools) {
         hideProgressDialog();
         if (apartList != null && apartList.size() > 0) {
             Intent intent = new Intent(this, FindDetailActivity.class);
             Bundle bundle = new Bundle();
             bundle.putSerializable("apartList", (Serializable) apartList);
-//            bundle.putSerializable("schools", (Serializable) schools);
+            bundle.putSerializable("schools", (Serializable) schools);
             intent.putExtras(bundle);
             startActivity(intent);
         } else {

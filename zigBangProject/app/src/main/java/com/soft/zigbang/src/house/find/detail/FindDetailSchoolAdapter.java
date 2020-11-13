@@ -40,7 +40,7 @@ public class FindDetailSchoolAdapter extends RecyclerView.Adapter<FindDetailScho
 
     @Override
     public int getItemCount() {
-        return schools.size();
+        return 7;
     }
 
     public class SchoolViewHolder extends RecyclerView.ViewHolder {

@@ -70,7 +70,10 @@
                 android:layout_weight="1"
                 android:layout_marginLeft="10dp"
                 android:background="@drawable/round_corner_back_1"
-                android:padding="15dp">
+                android:paddingVertical="15dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="8dp"
+                >
 
                 <TextView
                     android:id="@+id/text_two_room"

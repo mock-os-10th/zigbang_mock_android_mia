@@ -41,7 +41,6 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
         fm.beginTransaction().add(R.id.container, myHomeFragment, "2").hide(myHomeFragment).commit();
         fm.beginTransaction().add(R.id.container, mainFragment, "1").commit();
         getHashKey();
-
     }
 
 
